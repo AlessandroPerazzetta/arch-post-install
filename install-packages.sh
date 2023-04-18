@@ -32,21 +32,20 @@ options=(
 4 "filezilla" on
 5 "meld" on
 6 "vlc" on
-7 "git" on
-8 "htop" on
-9 "brave-browser" on
-10 "remmina" on
-11 "vscodium" on
-12 "dbeaver" on
-13 "smartgit" on
-14 "keepassxc" on
-15 "qownnotes" on
-16 "virtualbox" on
-17 "kicad" on
-18 "telegram" on
-19 "rust" on
-20 "python 3.6.15 (src install)" off
-21 "qtcreator + qt5" off)
+7 "htop" on
+8 "brave-browser" on
+9 "remmina" on
+10 "vscodium" on
+11 "dbeaver" on
+12 "smartgit" on
+13 "keepassxc" on
+14 "qownnotes" on
+15 "virtualbox" on
+16 "kicad" on
+17 "telegram" on
+18 "rust" on
+19 "python 3.6.15 (src install)" off
+20 "qtcreator + qt5" off)
 
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
@@ -132,22 +131,18 @@ then
                 curl -fsSLo ~/.local/share/vlc/ml.xspf https://raw.githubusercontent.com/AlessandroPerazzetta/vlc-media-library/main/ml.xspf
                 ;;
             7)
-                printf "${YELLOW}Installing git...\n${NC}"
-                sudo pacman -Sy git
-                ;;
-            8)
                 printf "${YELLOW}Installing htop...\n${NC}"
                 sudo pacman -Sy htop
                 ;;
-            9)
+            8)
                 printf "${YELLOW}Installing brave-browser...\n${NC}"
                 sudo pacman -Sy brave-browser
                 ;;
-            10)
+            9)
                 printf "${YELLOW}Installing remmina...\n${NC}"
                 sudo pacman -Sy remmina
                 ;;
-            11)
+            10)
                 printf "${YELLOW}Installing vscodium...\n${NC}"
                 sudo pacman -Sy vscodium
 
@@ -157,25 +152,26 @@ then
                 sudo /usr/local/sbin/vscodium-json-updater.sh
 
                 printf "${YELLOW}Installing nemo action for vscodium...\n${NC}"
-                sudo wget https://raw.githubusercontent.com/AlessandroPerazzetta/nemo-actions-vscodium-launcher/main/codium.nemo_action -O ~/.local/share/nemo/actions/codium.nemo_action
+                #sudo wget https://raw.githubusercontent.com/AlessandroPerazzetta/nemo-actions-vscodium-launcher/main/codium.nemo_action -O ~/.local/share/nemo/actions/codium.nemo_action
+                curl -fsSLo ~/.local/share/nemo/actions/codium.nemo_action https://raw.githubusercontent.com/AlessandroPerazzetta/nemo-actions-vscodium-launcher/main/codium.nemo_action
                 ;;
-            12)
+            11)
                 printf "${YELLOW}Installing dbeaver...\n${NC}"
                 sudo pacman -Sy dbeaver
                 ;;
-            13)
+            12)
                 printf "${YELLOW}Installing smartgit...\n${NC}"
                 yay -S smartgit --noconfirm
                 ;;
-            14)
+            13)
                 printf "${YELLOW}Installing keepassxc...\n${NC}"
                 sudo pacman -Sy keepassxc
                 ;;
-            15)
+            14)
                 printf "${YELLOW}Installing qownnotes...\n${NC}"
                 yay -S qownnotes --noconfirm
                 ;;
-            16)
+            15)
                 printf "${YELLOW}Installing virtualbox...\n${NC}"
                 sudo pacman -Sy virtualbox virtualbox-guest-iso
                 sudo adduser $CURRENT_USER vboxusers
@@ -187,23 +183,23 @@ then
                 printf "${LCYAN}--------------------------------------------------------------------------------\n${GREEN}"
                 yay -S virtualbox-ext-oracle --noconfirm
                 ;;
-            17)
+            16)
                 printf "${YELLOW}Installing kicad...\n${NC}"
                 sudo pacman -Sy kicad kicad-library
                 ;;
-            18)
+            17)
                 printf "${YELLOW}Installing telegram...\n${NC}"
                 sudo pacman -Sy telegram-desktop
                 ;;
-            19)
+            18)
                 printf "${YELLOW}Installing rust...\n${NC}"
                 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
                 ;;
-            20)
+            19)
                 printf "${YELLOW}Installing python 3.6.15 (src install)...\n${NC}"
                 yay -S python36 --noconfirm
                 ;;
-            21)
+            20)
                 printf "${YELLOW}Installing qtcreator, qt5 and related stuff, cmake...\n${NC}"
                 sudo pacman -Sy qtcreator
                 ;;
