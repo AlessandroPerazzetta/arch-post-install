@@ -2,8 +2,17 @@
 
 wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install/main/install-packages.sh | bash
 
+# List of selectable installed packages:
 
-# List installed packages:
+- base-devel
+- git
+- openssh
+- xed
+- curl
+- python-pyserial
+- jq    
+
+# List of selectable installed packages:
 
 - bwm-ng 
 - screen
@@ -14,10 +23,30 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
 - git 
 - htop 
 - jq
-- curl
 - brave-browser
+- brave-browser extensions
+    * bypass-adblock-detection
+    * hls-downloader
+    * i-dont-care-about-cookies
+    * keepassxc-browser
+    * session-buddy
+    * the-marvellous-suspender
+    * url-tracking-stripper-red
+    * video-downloader-plus
 - remmina
 - codium
+- codium extensions
+    * bungcip.better-toml
+    * rust-lang.rust-analyzer
+    * jinxdash.prettier-rust
+    * kogia-sima.vscode-sailfish
+    * ms-python.python
+    * ms-python.vscode-pylance
+    * ms-vscode.cpptools
+    * serayuzgur.crates
+    * usernamehw.errorlens
+    * vadimcn.vscode-lldb
+    * vsciot-vscode.vscode-arduino
 - dbeaver-ce_latest_amd64
 - smartgit-21_1_1
 - keepassxc
