@@ -42,10 +42,11 @@ options=(
 14 "qownnotes" on
 15 "virtualbox" on
 16 "kicad" on
-17 "telegram" on
-18 "rust" on
-19 "python 3.6.15 (src install)" off
-20 "qtcreator + qt5" off)
+17 "freecad" on
+18 "telegram" on
+19 "rust" on
+20 "python 3.6.15 (src install)" off
+21 "qtcreator + qt5" off)
 
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
@@ -189,18 +190,22 @@ then
                 sudo pacman -Sy kicad kicad-library
                 ;;
             17)
+                printf "${YELLOW}Installing freecad...\n${NC}"
+                sudo pacman -Sy freecad
+                ;;
+            18)
                 printf "${YELLOW}Installing telegram...\n${NC}"
                 sudo pacman -Sy telegram-desktop
                 ;;
-            18)
+            19)
                 printf "${YELLOW}Installing rust...\n${NC}"
                 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
                 ;;
-            19)
+            20)
                 printf "${YELLOW}Installing python 3.6.15 (src install)...\n${NC}"
                 yay -S python36 --noconfirm
                 ;;
-            20)
+            21)
                 printf "${YELLOW}Installing qtcreator, qt5 and related stuff, cmake...\n${NC}"
                 sudo pacman -Sy qtcreator
                 ;;

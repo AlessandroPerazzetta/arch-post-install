@@ -55,6 +55,7 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
 - qownnotes
 - virtualbox
 - kicad
+- freecad
 - telegram
 - rust
 - python 3.6.15 (source install)
