@@ -45,8 +45,9 @@ options=(
 17 "freecad" on
 18 "telegram" on
 19 "rust" on
-20 "python 3.6.15 (src install)" off
-21 "qtcreator + qt5" off)
+20 "python 3.6 (AUR install)" off
+21 "python 3.8 (AUR install)" off
+22 "qtcreator + qt5" off)
 
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
