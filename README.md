@@ -2,7 +2,7 @@
 
 wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install/main/install-packages.sh | bash
 
-# List of selectable installed packages:
+# List of required installed packages:
 
 - base-devel
 - git
