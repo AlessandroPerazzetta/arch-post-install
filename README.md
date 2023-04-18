@@ -58,7 +58,8 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
 - freecad
 - telegram
 - rust
-- python 3.6.15 (source install)
+- python 3.6 (AUR install)
+- python 3.8 (AUR install)
 - qtcreator + qt5 + qt5 lib + cmake
 
 # List installed scripts:

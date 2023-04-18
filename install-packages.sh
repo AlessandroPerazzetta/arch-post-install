@@ -202,10 +202,14 @@ then
                 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
                 ;;
             20)
-                printf "${YELLOW}Installing python 3.6.15 (src install)...\n${NC}"
+                printf "${YELLOW}Installing python 3.6 (AUR install)...\n${NC}"
                 yay -S python36 --noconfirm
                 ;;
             21)
+                printf "${YELLOW}Installing python 3.8 (AUR install)...\n${NC}"
+                yay -S python38 --noconfirm
+                ;;
+            22)
                 printf "${YELLOW}Installing qtcreator, qt5 and related stuff, cmake...\n${NC}"
                 sudo pacman -Sy qtcreator
                 ;;
