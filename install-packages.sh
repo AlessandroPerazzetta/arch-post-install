@@ -20,7 +20,6 @@ LGRAY='\033[0;37m'
 WHITE='\033[1;37m'
 NC='\033[0m' # No Color
 
-
 sudo pacman -Sy
 sudo pacman -S dialog
 
@@ -61,7 +60,7 @@ then
     printf "${YELLOW}Install required packages...\n${NC}"
     sleep 1
     sudo pacman -Sy --needed base-devel git openssh
-    sudo pacman -Sy xed curl python-pyserial jq    
+    sudo pacman -Sy xed curl python-pyserial jq wget
     sudo systemctl enable sshd
     sudo systemctl start sshd
 

@@ -11,7 +11,8 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
 - xed
 - curl
 - python-pyserial
-- jq    
+- jq
+- wget
 
 # List of selectable installed packages:
 
