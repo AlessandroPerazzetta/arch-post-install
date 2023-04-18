@@ -4,6 +4,7 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
 
 # List of required installed packages:
 
+- dialog
 - base-devel
 - git
 - openssh
