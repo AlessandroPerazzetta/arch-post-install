@@ -68,7 +68,7 @@ then
     makepkg -si
     yay -Syu
 
-    egrep -i "^groupname" /etc/group;
+    grep -Ei "^dialout" /etc/group;
     if [ $? -eq 0 ]; then
         printf "${YELLOW}Dialout Group Exists add current user...\n${NC}"
         if id -nG "$CURRENT_USER" | grep -qw "dialout"; then
