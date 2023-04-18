@@ -49,7 +49,7 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
     * vadimcn.vscode-lldb
     * vsciot-vscode.vscode-arduino
 - dbeaver-ce_latest_amd64
-- smartgit-21_1_1
+- smartgit-latest
 - keepassxc
 - qownnotes
 - virtualbox
