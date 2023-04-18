@@ -79,7 +79,7 @@ then
         fi
     else
         echo ""
-        printf "${RED}Dialout Group Exists not add current user...\n${NC}"
+        printf "${RED}Dialout Group Not Exists can't add current user...\n${NC}"
     fi
 
     for choice in $choices
