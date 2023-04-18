@@ -68,11 +68,18 @@ then
     makepkg -si
     yay -Syu
 
-    if id -nG "$CURRENT_USER" | grep -qw "dialout"; then
-        printf "${YELLOW}User is already in dialout group (ref: /dev/ttyUSBx Error opening serial port)...\n${NC}"
+    egrep -i "^groupname" /etc/group;
+    if [ $? -eq 0 ]; then
+        printf "${YELLOW}Dialout Group Exists add current user...\n${NC}"
+        if id -nG "$CURRENT_USER" | grep -qw "dialout"; then
+            printf "${YELLOW}User is already in dialout group (ref: /dev/ttyUSBx Error opening serial port)...\n${NC}"
+        else
+            printf "${YELLOW}Add user to dialout group (ref: /dev/ttyUSBx Error opening serial port)...\n${NC}"
+            sudo usermod -a -G dialout $CURRENT_USER
+        fi
     else
-        printf "${YELLOW}Add user to dialout group (ref: /dev/ttyUSBx Error opening serial port)...\n${NC}"
-        sudo usermod -a -G dialout $CURRENT_USER
+        echo ""
+        printf "${RED}Dialout Group Exists not add current user...\n${NC}"
     fi
 
     for choice in $choices
