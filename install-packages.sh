@@ -34,20 +34,21 @@ options=(
 6 "vlc" on
 7 "htop" on
 8 "brave-browser" on
-9 "remmina" on
-10 "vscodium" on
-11 "dbeaver" on
-12 "smartgit" on
-13 "keepassxc" on
-14 "qownnotes" on
-15 "virtualbox" on
-16 "kicad" on
-17 "freecad" on
-18 "telegram" on
-19 "rust" on
-20 "python 3.6 (AUR install)" off
-21 "python 3.8 (AUR install)" off
-22 "qtcreator + qt5" off)
+9 "brave-browser extensions" on
+10 "remmina" on
+11 "vscodium" on
+12 "dbeaver" on
+13 "smartgit" on
+14 "keepassxc" on
+15 "qownnotes" on
+16 "virtualbox" on
+17 "kicad" on
+18 "freecad" on
+19 "telegram" on
+20 "rust" on
+21 "python 3.6 (AUR install)" off
+22 "python 3.8 (AUR install)" off
+23 "qtcreator + qt5" off)
 
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
@@ -141,10 +142,40 @@ then
                 yay -S brave-bin --noconfirm
                 ;;
             9)
+                printf "${YELLOW}Installing brave-browser extensions...\n${NC}"
+                BRAVE_PATH="/opt/brave-bin"
+                BRAVE_EXTENSIONS_PATH="$BRAVE_PATH/extensions"
+                if [ -d "$BRAVE_PATH" ]
+                then
+                    sudo mkdir -p ${BRAVE_EXTENSIONS_PATH}
+                    declare -A EXTlist=(
+                        ["bypass-adblock-detection"]="lppagnomjcaohgkfljlebenbmbdmbkdj"
+                        ["hls-downloader"]="hkbifmjmkohpemgdkknlbgmnpocooogp"
+                        ["i-dont-care-about-cookies"]="fihnjjcciajhdojfnbdddfaoknhalnja"
+                        ["keepassxc-browser"]="oboonakemofpalcgghocfoadofidjkkk"
+                        ["session-buddy"]="edacconmaakjimmfgnblocblbcdcpbko"
+                        ["the-marvellous-suspender"]="noogafoofpebimajpfpamcfhoaifemoa"
+                        ["url-tracking-stripper-red"]="flnagcobkfofedknnnmofijmmkbgfamf"
+                        ["video-downloader-plus"]="njgehaondchbmjmajphnhlojfnbfokng"
+                    )
+                    for i in "${!EXTlist[@]}"; do
+                        # echo "Key: $i value: ${EXTlist[$i]}"
+                        # echo '{"external_update_url": "https://clients2.google.com/service/update2/crx"}' > /opt/google/chrome/extensions/${EXTlist[$i]}.json
+                        sudo bash -c "echo -e '{ \"external_update_url\": \"https://clients2.google.com/service/update2/crx\" }' > ${BRAVE_EXTENSIONS_PATH}/${EXTlist[$i]}.json"
+                    done
+                else
+                    printf "${LCYAN}--------------------------------------------------------------------------------\n${LRED}"
+                    printf "ERROR Brave path not found, extensions not installed !!!\n"
+                    printf "${LCYAN}--------------------------------------------------------------------------------\n${GREEN}"
+                    read -n 1 -s -r -p "Press any key to continue"
+                    printf "\n${NC}"
+                fi
+                ;;
+            10)
                 printf "${YELLOW}Installing remmina...\n${NC}"
                 sudo pacman -Sy remmina
                 ;;
-            10)
+            11)
                 printf "${YELLOW}Installing vscodium...\n${NC}"
                 sudo pacman -Sy vscodium
 
@@ -158,23 +189,23 @@ then
                 mkdir -p ~/.local/share/nemo/actions/
                 curl -fsSLo ~/.local/share/nemo/actions/codium.nemo_action https://raw.githubusercontent.com/AlessandroPerazzetta/nemo-actions-vscodium-launcher/main/codium.nemo_action
                 ;;
-            11)
+            12)
                 printf "${YELLOW}Installing dbeaver...\n${NC}"
                 sudo pacman -Sy dbeaver
                 ;;
-            12)
+            13)
                 printf "${YELLOW}Installing smartgit...\n${NC}"
                 yay -S smartgit --noconfirm
                 ;;
-            13)
+            14)
                 printf "${YELLOW}Installing keepassxc...\n${NC}"
                 sudo pacman -Sy keepassxc
                 ;;
-            14)
+            15)
                 printf "${YELLOW}Installing qownnotes...\n${NC}"
                 yay -S qownnotes --noconfirm
                 ;;
-            15)
+            16)
                 printf "${YELLOW}Installing virtualbox...\n${NC}"
                 sudo pacman -Sy virtualbox virtualbox-guest-iso
                 sudo adduser $CURRENT_USER vboxusers
@@ -186,31 +217,31 @@ then
                 printf "${LCYAN}--------------------------------------------------------------------------------\n${GREEN}"
                 yay -S virtualbox-ext-oracle --noconfirm
                 ;;
-            16)
+            17)
                 printf "${YELLOW}Installing kicad...\n${NC}"
                 sudo pacman -Sy kicad kicad-library
                 ;;
-            17)
+            18)
                 printf "${YELLOW}Installing freecad...\n${NC}"
                 sudo pacman -Sy freecad
                 ;;
-            18)
+            19)
                 printf "${YELLOW}Installing telegram...\n${NC}"
                 sudo pacman -Sy telegram-desktop
                 ;;
-            19)
+            20)
                 printf "${YELLOW}Installing rust...\n${NC}"
                 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
                 ;;
-            20)
+            21)
                 printf "${YELLOW}Installing python 3.6 (AUR install)...\n${NC}"
                 yay -S python36 --noconfirm
                 ;;
-            21)
+            22)
                 printf "${YELLOW}Installing python 3.8 (AUR install)...\n${NC}"
                 yay -S python38 --noconfirm
                 ;;
-            22)
+            23)
                 printf "${YELLOW}Installing qtcreator, qt5 and related stuff, cmake...\n${NC}"
                 sudo pacman -Sy qtcreator
                 ;;
