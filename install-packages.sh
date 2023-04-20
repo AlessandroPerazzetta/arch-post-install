@@ -138,7 +138,7 @@ then
                 ;;
             8)
                 printf "${YELLOW}Installing brave-browser...\n${NC}"
-                sudo pacman -Sy brave-browser
+                yay -S brave-bin --noconfirm
                 ;;
             9)
                 printf "${YELLOW}Installing remmina...\n${NC}"
