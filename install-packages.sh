@@ -37,18 +37,19 @@ options=(
 9 "brave-browser extensions" on
 10 "remmina" on
 11 "vscodium" on
-12 "dbeaver" on
-13 "smartgit" on
-14 "keepassxc" on
-15 "qownnotes" on
-16 "virtualbox" on
-17 "kicad" on
-18 "freecad" on
-19 "telegram" on
-20 "rust" on
-21 "python 3.6 (AUR install)" off
-22 "python 3.8 (AUR install)" off
-23 "qtcreator + qt5" off)
+12 "vscodium extensions" on
+13 "dbeaver" on
+14 "smartgit" on
+15 "keepassxc" on
+16 "qownnotes" on
+17 "virtualbox" on
+18 "kicad" on
+19 "freecad" on
+20 "telegram" on
+21 "rust" on
+22 "python 3.6 (AUR install)" off
+23 "python 3.8 (AUR install)" off
+24 "qtcreator + qt5" off)
 
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
@@ -190,22 +191,36 @@ then
                 curl -fsSLo ~/.local/share/nemo/actions/codium.nemo_action https://raw.githubusercontent.com/AlessandroPerazzetta/nemo-actions-vscodium-launcher/main/codium.nemo_action
                 ;;
             12)
+                printf "${YELLOW}Installing vscodium extensions ...\n${NC}"
+                codium --install-extension bungcip.better-toml
+                codium --install-extension rust-lang.rust-analyzer
+                codium --install-extension jinxdash.prettier-rust
+                codium --install-extension kogia-sima.vscode-sailfish
+                codium --install-extension ms-python.python
+                codium --install-extension ms-python.vscode-pylance
+                codium --install-extension ms-vscode.cpptools
+                codium --install-extension serayuzgur.crates
+                codium --install-extension usernamehw.errorlens
+                codium --install-extension vadimcn.vscode-lldb
+                codium --install-extension vsciot-vscode.vscode-arduino
+                ;;
+            13)
                 printf "${YELLOW}Installing dbeaver...\n${NC}"
                 sudo pacman -Sy dbeaver
                 ;;
-            13)
+            14)
                 printf "${YELLOW}Installing smartgit...\n${NC}"
                 yay -S smartgit --noconfirm
                 ;;
-            14)
+            15)
                 printf "${YELLOW}Installing keepassxc...\n${NC}"
                 sudo pacman -Sy keepassxc
                 ;;
-            15)
+            16)
                 printf "${YELLOW}Installing qownnotes...\n${NC}"
                 yay -S qownnotes --noconfirm
                 ;;
-            16)
+            17)
                 printf "${YELLOW}Installing virtualbox...\n${NC}"
                 sudo pacman -Sy virtualbox virtualbox-guest-iso
                 sudo adduser $CURRENT_USER vboxusers
@@ -217,31 +232,31 @@ then
                 printf "${LCYAN}--------------------------------------------------------------------------------\n${GREEN}"
                 yay -S virtualbox-ext-oracle --noconfirm
                 ;;
-            17)
+            18)
                 printf "${YELLOW}Installing kicad...\n${NC}"
                 sudo pacman -Sy kicad kicad-library
                 ;;
-            18)
+            19)
                 printf "${YELLOW}Installing freecad...\n${NC}"
                 sudo pacman -Sy freecad
                 ;;
-            19)
+            20)
                 printf "${YELLOW}Installing telegram...\n${NC}"
                 sudo pacman -Sy telegram-desktop
                 ;;
-            20)
+            21)
                 printf "${YELLOW}Installing rust...\n${NC}"
                 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
                 ;;
-            21)
+            22)
                 printf "${YELLOW}Installing python 3.6 (AUR install)...\n${NC}"
                 yay -S python36 --noconfirm
                 ;;
-            22)
+            23)
                 printf "${YELLOW}Installing python 3.8 (AUR install)...\n${NC}"
                 yay -S python38 --noconfirm
                 ;;
-            23)
+            24)
                 printf "${YELLOW}Installing qtcreator, qt5 and related stuff, cmake...\n${NC}"
                 sudo pacman -Sy qtcreator
                 ;;
