@@ -180,7 +180,7 @@ then
                 ;;
             11)
                 printf "${YELLOW}Installing vscodium...\n${NC}"
-                sudo pacman -Sy vscodium
+                yay -S vscodium --noconfirm
 
                 printf "${YELLOW}Installing vscodium extension gallery updater...\n${NC}"
                 sudo curl -fsSLo /usr/local/sbin/vscodium-json-updater.sh https://raw.githubusercontent.com/AlessandroPerazzetta/vscodium-json-updater/main/update.sh
