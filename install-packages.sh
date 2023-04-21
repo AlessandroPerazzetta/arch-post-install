@@ -85,7 +85,6 @@ then
             sudo usermod -a -G dialout $CURRENT_USER
         fi
     else
-        echo ""
         printf "${RED}Dialout Group Not Exists can't add current user...\n${NC}"
     fi
 
