@@ -49,7 +49,8 @@ options=(
 21 "rust" on
 22 "python 3.6 (AUR install)" off
 23 "python 3.8 (AUR install)" off
-24 "qtcreator + qt5" off)
+24 "qtcreator + qt5" off
+25 "borgbackup + vorta gui" on)
 
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
@@ -265,6 +266,11 @@ then
             24)
                 printf "${YELLOW}Installing qtcreator, qt5 and related stuff, cmake...\n${NC}"
                 sudo pacman -Sy qtcreator
+                ;;
+            25)
+                printf "${YELLOW}Installing borgbackup and vorta gui...\n${NC}"
+                yay -S borgbackup --noconfirm
+                yay -S vorta --noconfirm
                 ;;
         esac
     done
