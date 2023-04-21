@@ -118,6 +118,7 @@ then
 
                 printf "${YELLOW}Set nvim as default editor...\n${NC}"
                 sudo sed -i -e "s/EDITOR=nano/EDITOR=vi/g" /etc/environment
+                sudo ln -s /usr/bin/nvim /usr/local/sbin/vi
                 ;;
             4)
                 printf "${YELLOW}Installing filezilla...\n${NC}"
