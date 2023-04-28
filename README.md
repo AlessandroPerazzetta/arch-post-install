@@ -37,7 +37,7 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
     * video-downloader-plus
 - remmina
 - codium
-- codium extensions
+- codium extensions installed
     * bungcip.better-toml
     * rust-lang.rust-analyzer
     * jinxdash.prettier-rust
@@ -49,6 +49,12 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
     * usernamehw.errorlens
     * vadimcn.vscode-lldb
     * vsciot-vscode.vscode-arduino
+- codium extensions uninstalled
+    * ms-toolsai.jupyter
+    * ms-toolsai.jupyter-keymap
+    * ms-toolsai.jupyter-renderers
+    * ms-toolsai.vscode-jupyter-cell-tags
+    * ms-toolsai.vscode-jupyter-slideshow
 - dbeaver-ce_latest_amd64
 - smartgit-latest
 - keepassxc
