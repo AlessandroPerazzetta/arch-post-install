@@ -80,6 +80,7 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
 
 - install neovim res
 - install xed theme
+- install gedit theme
 - install VLC Media Library
 - add user to dialout group
 - add bash aliases

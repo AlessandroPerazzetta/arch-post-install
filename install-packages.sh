@@ -26,31 +26,33 @@ sudo pacman -S dialog
 cmd=(dialog --title "Automated packages installation" --backtitle "Mint Post Install" --no-collapse --separate-output --checklist "Select options:" 22 76 16)
 options=(
 0 "Personal resources" on
-1 "bwm-ng" on
-2 "screen" on
-3 "neovim" on
-4 "filezilla" on
-5 "meld" on
-6 "vlc" on
-7 "htop" on
-8 "brave-browser" on
-9 "brave-browser extensions" on
-10 "remmina" on
-11 "vscodium" on
-12 "vscodium extensions" on
-13 "dbeaver" on
-14 "smartgit" on
-15 "keepassxc" on
-16 "qownnotes" on
-17 "virtualbox" on
-18 "kicad" on
-19 "freecad" on
-20 "telegram" on
-21 "rust" on
-22 "python 3.6 (AUR install)" off
-23 "python 3.8 (AUR install)" off
-24 "qtcreator + qt5" off
-25 "borgbackup + vorta gui" on)
+1 "Xed theme resources" on
+2 "Gedit theme resources" off
+3 "bwm-ng" on
+4 "screen" on
+5 "neovim" on
+6 "filezilla" on
+7 "meld" on
+8 "vlc" on
+9 "htop" on
+10 "brave-browser" on
+11 "brave-browser extensions" on
+12 "remmina" on
+13 "vscodium" on
+14 "vscodium extensions" on
+15 "dbeaver" on
+16 "smartgit" on
+17 "keepassxc" on
+18 "qownnotes" on
+19 "virtualbox" on
+20 "kicad" on
+21 "freecad" on
+22 "telegram" on
+23 "rust" on
+24 "python 3.6 (AUR install)" off
+25 "python 3.8 (AUR install)" off
+26 "qtcreator + qt5" off
+27 "borgbackup + vorta gui" on)
 
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
@@ -95,19 +97,26 @@ then
                 printf "${YELLOW}Installing PERSONAL RESOURCES...\n${NC}"
                 printf "${YELLOW}Installing aliase resources...\n${NC}"
                 printf "alias l='ls -lah'\nalias cls='clear'" >> ~/.bashrc-personal
+                ;;
+            1)
                 printf "${YELLOW}Installing Xed resources...\n${NC}"
                 mkdir -p ~/.local/share/xed/styles/
                 curl -fsSLo ~/.local/share/xed/styles/kat-ng.xml https://raw.githubusercontent.com/AlessandroPerazzetta/xed-themes/main/kat-ng.xml
                 ;;
-            1)
+            2)
+                printf "${YELLOW}Installing Gedit resources...\n${NC}"
+                mkdir -p ~/.local/share/gedit/styles/
+                curl -fsSLo ~/.local/share/gedit/styles/kat-ng.xml https://raw.githubusercontent.com/AlessandroPerazzetta/xed-themes/main/kat-ng.xml
+                ;;
+            3)
                 printf "${YELLOW}Installing bwm-ng...\n${NC}"
                 sudo pacman -Sy bwm-ng
                 ;;
-            2)
+            4)
                 printf "${YELLOW}Installing screen...\n${NC}"
                 sudo pacman -Sy screen
                 ;;
-            3)
+            5)
                 printf "${YELLOW}Installing neovim...\n${NC}"
                 sudo pacman -Sy neovim
 
@@ -120,15 +129,15 @@ then
                 printf "${YELLOW}Create vi nvim symbolic link...\n${NC}"
                 sudo ln -s /usr/bin/nvim /usr/local/sbin/vi
                 ;;
-            4)
+            6)
                 printf "${YELLOW}Installing filezilla...\n${NC}"
                 sudo pacman -Sy filezilla
                 ;;
-            5)
+            7)
                 printf "${YELLOW}Installing meld...\n${NC}"
                 sudo pacman -Sy meld
                 ;;
-            6)
+            8)
                 printf "${YELLOW}Installing vlc...\n${NC}"
                 sudo pacman -Sy vlc
                 
@@ -136,15 +145,15 @@ then
                 mkdir -p ~/.local/share/vlc/
                 curl -fsSLo ~/.local/share/vlc/ml.xspf https://raw.githubusercontent.com/AlessandroPerazzetta/vlc-media-library/main/ml.xspf
                 ;;
-            7)
+            9)
                 printf "${YELLOW}Installing htop...\n${NC}"
                 sudo pacman -Sy htop
                 ;;
-            8)
+            10)
                 printf "${YELLOW}Installing brave-browser...\n${NC}"
                 yay -S brave-bin --noconfirm
                 ;;
-            9)
+            11)
                 printf "${YELLOW}Installing brave-browser extensions...\n${NC}"
                 BRAVE_PATH="/opt/brave-bin"
                 BRAVE_EXTENSIONS_PATH="$BRAVE_PATH/extensions"
@@ -174,11 +183,11 @@ then
                     printf "\n${NC}"
                 fi
                 ;;
-            10)
+            12)
                 printf "${YELLOW}Installing remmina...\n${NC}"
                 sudo pacman -Sy remmina
                 ;;
-            11)
+            13)
                 printf "${YELLOW}Installing vscodium...\n${NC}"
                 yay -S vscodium --noconfirm
 
@@ -192,7 +201,7 @@ then
                 mkdir -p ~/.local/share/nemo/actions/
                 curl -fsSLo ~/.local/share/nemo/actions/codium.nemo_action https://raw.githubusercontent.com/AlessandroPerazzetta/nemo-actions-vscodium-launcher/main/codium.nemo_action
                 ;;
-            12)
+            14)
                 printf "${YELLOW}VSCodium extensions ...\n${NC}"
                 if ! command -v codium &> /dev/null
                 then
@@ -219,23 +228,23 @@ then
                     codium --uninstall-extension ms-toolsai.vscode-jupyter-slideshow
                 fi
                 ;;
-            13)
+            15)
                 printf "${YELLOW}Installing dbeaver...\n${NC}"
                 sudo pacman -Sy dbeaver
                 ;;
-            14)
+            16)
                 printf "${YELLOW}Installing smartgit...\n${NC}"
                 yay -S smartgit --noconfirm
                 ;;
-            15)
+            17)
                 printf "${YELLOW}Installing keepassxc...\n${NC}"
                 sudo pacman -Sy keepassxc
                 ;;
-            16)
+            18)
                 printf "${YELLOW}Installing qownnotes...\n${NC}"
                 yay -S qownnotes --noconfirm
                 ;;
-            17)
+            19)
                 printf "${YELLOW}Installing virtualbox...\n${NC}"
                 sudo pacman -Sy virtualbox virtualbox-guest-iso
                 sudo adduser $CURRENT_USER vboxusers
@@ -247,19 +256,19 @@ then
                 printf "${LCYAN}--------------------------------------------------------------------------------\n${GREEN}"
                 yay -S virtualbox-ext-oracle --noconfirm
                 ;;
-            18)
+            20)
                 printf "${YELLOW}Installing kicad...\n${NC}"
                 sudo pacman -Sy kicad kicad-library
                 ;;
-            19)
+            21)
                 printf "${YELLOW}Installing freecad...\n${NC}"
                 sudo pacman -Sy freecad
                 ;;
-            20)
+            22)
                 printf "${YELLOW}Installing telegram...\n${NC}"
                 sudo pacman -Sy telegram-desktop
                 ;;
-            21)
+            23)
                 printf "${YELLOW}Installing rust...\n${NC}"
                 if ! command -v rustc &> /dev/null
                 then
@@ -268,19 +277,19 @@ then
                     printf "${RED}Installing rust, rustc found. Rust already present...\n${NC}"
                 fi
                 ;;
-            22)
+            24)
                 printf "${YELLOW}Installing python 3.6 (AUR install)...\n${NC}"
                 yay -S python36 --noconfirm
                 ;;
-            23)
+            25)
                 printf "${YELLOW}Installing python 3.8 (AUR install)...\n${NC}"
                 yay -S python38 --noconfirm
                 ;;
-            24)
+            26)
                 printf "${YELLOW}Installing qtcreator, qt5 and related stuff, cmake...\n${NC}"
                 sudo pacman -Sy qtcreator
                 ;;
-            25)
+            27)
                 printf "${YELLOW}Installing borgbackup and vorta gui...\n${NC}"
                 yay -S borgbackup --noconfirm
                 yay -S vorta --noconfirm
