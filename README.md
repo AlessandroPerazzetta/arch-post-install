@@ -35,6 +35,7 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
     * the-marvellous-suspender
     * url-tracking-stripper-red
     * video-downloader-plus
+    * adblock-for-twitch
 - remmina
 - codium
 - codium extensions installed
