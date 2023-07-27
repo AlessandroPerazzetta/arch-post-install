@@ -169,7 +169,7 @@ then
                         ["the-marvellous-suspender"]="noogafoofpebimajpfpamcfhoaifemoa"
                         ["url-tracking-stripper-red"]="flnagcobkfofedknnnmofijmmkbgfamf"
                         ["video-downloader-plus"]="njgehaondchbmjmajphnhlojfnbfokng"
-                        ["adblock-for-twitch"]="mdomkpjejpboocpojfikalapgholajdc"
+                        ["stream-cleaner"]="lehcglgkjkamolcflammloedahjocbbg"
                     )
                     for i in "${!EXTlist[@]}"; do
                         # echo "Key: $i value: ${EXTlist[$i]}"
