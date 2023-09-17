@@ -50,6 +50,7 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
     * usernamehw.errorlens
     * vadimcn.vscode-lldb
     * jeff-hykin.better-cpp-syntax
+    * aaron-bond.better-comments
     * vsciot-vscode.vscode-arduino
 - codium extensions uninstalled
     * ms-toolsai.jupyter
