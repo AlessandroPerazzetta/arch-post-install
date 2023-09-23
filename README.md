@@ -71,6 +71,7 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
 - python 3.8 (AUR install)
 - qtcreator + qt5 + qt5 lib + cmake
 - borgbackup + vorta gui
+- spotube
 
 # List installed scripts:
 

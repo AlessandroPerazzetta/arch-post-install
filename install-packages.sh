@@ -52,7 +52,8 @@ options=(
 24 "python 3.6 (AUR install)" off
 25 "python 3.8 (AUR install)" off
 26 "qtcreator + qt5" off
-27 "borgbackup + vorta gui" on)
+27 "borgbackup + vorta gui" on
+28 "spotube" (AUR install)" off)
 
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
@@ -296,6 +297,10 @@ then
                 printf "${YELLOW}Installing borgbackup and vorta gui...\n${NC}"
                 yay -S borgbackup --noconfirm
                 yay -S vorta --noconfirm
+                ;;
+            28)
+                printf "${YELLOW}Installing spotube...\n${NC}"
+                yay -S spotube-bin --noconfirm
                 ;;
         esac
     done
