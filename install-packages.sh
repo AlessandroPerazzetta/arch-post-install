@@ -67,7 +67,7 @@ then
     printf "${YELLOW}Install required packages...\n${NC}"
     sleep 1
     sudo pacman -Sy --needed base-devel git openssh
-    sudo pacman -Sy xed curl python-pyserial jq wget
+    sudo pacman -Sy xed curl python-pyserial jq wget kitty
     sudo systemctl enable sshd
     sudo systemctl start sshd
 
