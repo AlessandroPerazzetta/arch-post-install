@@ -23,7 +23,7 @@ NC='\033[0m' # No Color
 sudo pacman -Sy
 sudo pacman -S dialog
 
-cmd=(dialog --title "Automated packages installation" --backtitle "Mint Post Install" --no-collapse --separate-output --checklist "Select options:" 22 76 16)
+cmd=(dialog --title "Automated packages installation" --backtitle "Arch Post Install" --no-collapse --separate-output --checklist "Select options:" 22 76 16)
 options=(
 0 "Personal resources" on
 1 "Xed theme resources" on
@@ -53,7 +53,7 @@ options=(
 25 "python 3.8 (AUR install)" off
 26 "qtcreator + qt5" off
 27 "borgbackup + vorta gui" on
-28 "spotube" (AUR install)" off)
+28 "spotube (AUR install)" off)
 
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
