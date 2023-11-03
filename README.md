@@ -87,6 +87,36 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
   
   > Replaced with local user .config custom product.json file
 
+# List installed codium extensions:
+
+- Better TOML Language support
+  * bungcip.better-toml
+- Rust language support for Visual Studio Code
+  * rust-lang.rust-analyzer
+- Prettier Rust is a code formatter that autocorrects bad syntax
+  * jinxdash.prettier-rust
+- Syntax Highlighting for Sailfish Templates in VSCode
+  * kogia-sima.vscode-sailfish
+- Python extension for Visual Studio Code
+  * ms-python.python
+  * ~~ms-python.vscode-pylance~~
+- C/C++ for Visual Studio Code
+  * ms-vscode.cpptools
+- Helps Rust developers managing dependencies with Cargo.toml.
+  * serayuzgur.crates
+- Improve highlighting of errors, warnings and other language diagnostics.
+  * usernamehw.errorlens
+- CodeLLDB (A native debugger powered by LLDB. Debug C++, Rust and other compiled languages)
+  * vadimcn.vscode-lldb
+- The bleeding edge of the C++ syntax
+  * jeff-hykin.better-cpp-syntax
+- Improve your code commenting by annotating with alert, informational, TODOs, and more!
+  * aaron-bond.better-comments
+- Arduino for Visual Studio Code
+  * vsciot-vscode.vscode-arduino
+- A vscode extension to help visualize css colors in files.
+  * kamikillerto.vscode-colorize
+
 # List installed languagess:
 
 - rust
