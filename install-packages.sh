@@ -40,20 +40,22 @@ options=(
 12 "remmina" on
 13 "vscodium" on
 14 "vscodium extensions" on
-15 "dbeaver" on
-16 "smartgit" on
-17 "keepassxc" on
-18 "qownnotes" on
-19 "virtualbox" on
-20 "kicad" on
-21 "freecad" on
-22 "telegram" on
-23 "rust" on
-24 "python 3.6 (AUR install)" off
-25 "python 3.8 (AUR install)" off
-26 "qtcreator + qt5" off
-27 "borgbackup + vorta gui" on
-28 "spotube (AUR install)" off)
+15 "marktext" on
+16 "dbeaver" on
+17 "smartgit" on
+18 "arduino-cli" on
+19 "keepassxc" on
+20 "qownnotes" on
+21 "virtualbox" on
+22 "kicad" on
+23 "freecad" on
+24 "telegram" on
+25 "rust" on
+26 "python 3.6 (AUR install)" off
+27 "python 3.8 (AUR install)" off
+28 "qtcreator + qt5" off
+29 "borgbackup + vorta gui" on
+30 "spotube (AUR install)" off)
 
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
@@ -260,14 +262,20 @@ then
                 yay -S smartgit --noconfirm
                 ;;
             18)
+                printf "${YELLOW}Installing arduino-cli...\n${NC}"
+                sudo mkdir -p /opt/arduino-cli/
+                sudo chown "$CURRENT_USER":"$CURRENT_USER" /opt/arduino-cli
+                curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | BINDIR=/opt/arduino-cli sh
+                ;; 
+            19)
                 printf "${YELLOW}Installing keepassxc...\n${NC}"
                 sudo pacman -Sy keepassxc
                 ;;
-            19)
+            20)
                 printf "${YELLOW}Installing qownnotes...\n${NC}"
                 yay -S qownnotes --noconfirm
                 ;;
-            20)
+            21)
                 printf "${YELLOW}Installing virtualbox...\n${NC}"
                 sudo pacman -Sy virtualbox virtualbox-guest-iso
                 sudo adduser $CURRENT_USER vboxusers
@@ -279,19 +287,19 @@ then
                 printf "${LCYAN}--------------------------------------------------------------------------------\n${GREEN}"
                 yay -S virtualbox-ext-oracle --noconfirm
                 ;;
-            21)
+            22)
                 printf "${YELLOW}Installing kicad...\n${NC}"
                 sudo pacman -Sy kicad kicad-library
                 ;;
-            22)
+            23)
                 printf "${YELLOW}Installing freecad...\n${NC}"
                 sudo pacman -Sy freecad
                 ;;
-            23)
+            24)
                 printf "${YELLOW}Installing telegram...\n${NC}"
                 sudo pacman -Sy telegram-desktop
                 ;;
-            24)
+            25)
                 printf "${YELLOW}Installing rust...\n${NC}"
                 if ! command -v rustc &> /dev/null
                 then
@@ -300,24 +308,24 @@ then
                     printf "${RED}Installing rust, rustc found. Rust already present...\n${NC}"
                 fi
                 ;;
-            25)
+            26)
                 printf "${YELLOW}Installing python 3.6 (AUR install)...\n${NC}"
                 yay -S python36 --noconfirm
                 ;;
-            26)
+            27)
                 printf "${YELLOW}Installing python 3.8 (AUR install)...\n${NC}"
                 yay -S python38 --noconfirm
                 ;;
-            27)
+            28)
                 printf "${YELLOW}Installing qtcreator, qt5 and related stuff, cmake...\n${NC}"
                 sudo pacman -Sy qtcreator
                 ;;
-            28)
+            29)
                 printf "${YELLOW}Installing borgbackup and vorta gui...\n${NC}"
                 yay -S borgbackup --noconfirm
                 yay -S vorta --noconfirm
                 ;;
-            29)
+            30)
                 printf "${YELLOW}Installing spotube...\n${NC}"
                 yay -S spotube-bin --noconfirm
                 ;;
