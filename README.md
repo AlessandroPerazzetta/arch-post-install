@@ -60,6 +60,7 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
     * ms-toolsai.jupyter-renderers
     * ms-toolsai.vscode-jupyter-cell-tags
     * ms-toolsai.vscode-jupyter-slideshow
+- marktext
 - dbeaver-ce_latest_amd64
 - smartgit-latest
 - keepassxc

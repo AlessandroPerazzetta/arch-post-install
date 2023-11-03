@@ -240,22 +240,34 @@ then
                 fi
                 ;;
             15)
+                printf "${YELLOW}Installing Marktext editor...\n${NC}"
+                sudo mkdir -p /opt/marktext/
+                curl -s https://api.github.com/repos/marktext/marktext/releases/latest |grep "browser_download_url.*AppImage" |cut -d : -f 2,3 |tr -d \"| xargs -n 1 sudo curl -L -o /opt/marktext/marktext
+                #sudo curl -fsSLo /opt/marktext/logo.png https://github.com/marktext/marktext/blob/b75895cdd1a51638f2e67b222b266ff8b9cb9d69/static/logo-96px.png
+                sudo chmod +x /opt/marktext/marktext
+                sudo bash -c "echo -e '[Desktop Entry]\nName=M\nGenericName=MQTT client\nComment=An all-round MQTT client that provides a structured topic overviewCategories=Development;\nTerminal=false\nType=Application\nPath=/opt/mqtt-explorer/\nExec=/opt/mqtt-explorer/mqtt-explorer\nStartupWMClass=mqtt-explorer\nStartupNotify=true\nKeywords=MQTT\nIcon=/opt/mqtt-explorer/icon.png' >> /usr/share/applications/mqtt-explorer.desktop"
+                curl -L https://raw.githubusercontent.com/marktext/marktext/develop/resources/linux/marktext.desktop -o ~/.local/share/applications/marktext.desktop
+                sed -i -e "s/Exec=marktext/Exec=\/opt\/marktext\/marktext/g" ~/.local/share/applications/marktext.desktop
+                sed -i -e "s/Icon=marktext/Icon=\/opt\/marktext\/marktext/g" ~/.local/share/applications/marktext.desktop
+                update-desktop-database ~/.local/share/applications/
+                ;;
+            16)
                 printf "${YELLOW}Installing dbeaver...\n${NC}"
                 sudo pacman -Sy dbeaver
                 ;;
-            16)
+            17)
                 printf "${YELLOW}Installing smartgit...\n${NC}"
                 yay -S smartgit --noconfirm
                 ;;
-            17)
+            18)
                 printf "${YELLOW}Installing keepassxc...\n${NC}"
                 sudo pacman -Sy keepassxc
                 ;;
-            18)
+            19)
                 printf "${YELLOW}Installing qownnotes...\n${NC}"
                 yay -S qownnotes --noconfirm
                 ;;
-            19)
+            20)
                 printf "${YELLOW}Installing virtualbox...\n${NC}"
                 sudo pacman -Sy virtualbox virtualbox-guest-iso
                 sudo adduser $CURRENT_USER vboxusers
@@ -267,19 +279,19 @@ then
                 printf "${LCYAN}--------------------------------------------------------------------------------\n${GREEN}"
                 yay -S virtualbox-ext-oracle --noconfirm
                 ;;
-            20)
+            21)
                 printf "${YELLOW}Installing kicad...\n${NC}"
                 sudo pacman -Sy kicad kicad-library
                 ;;
-            21)
+            22)
                 printf "${YELLOW}Installing freecad...\n${NC}"
                 sudo pacman -Sy freecad
                 ;;
-            22)
+            23)
                 printf "${YELLOW}Installing telegram...\n${NC}"
                 sudo pacman -Sy telegram-desktop
                 ;;
-            23)
+            24)
                 printf "${YELLOW}Installing rust...\n${NC}"
                 if ! command -v rustc &> /dev/null
                 then
@@ -288,24 +300,24 @@ then
                     printf "${RED}Installing rust, rustc found. Rust already present...\n${NC}"
                 fi
                 ;;
-            24)
+            25)
                 printf "${YELLOW}Installing python 3.6 (AUR install)...\n${NC}"
                 yay -S python36 --noconfirm
                 ;;
-            25)
+            26)
                 printf "${YELLOW}Installing python 3.8 (AUR install)...\n${NC}"
                 yay -S python38 --noconfirm
                 ;;
-            26)
+            27)
                 printf "${YELLOW}Installing qtcreator, qt5 and related stuff, cmake...\n${NC}"
                 sudo pacman -Sy qtcreator
                 ;;
-            27)
+            28)
                 printf "${YELLOW}Installing borgbackup and vorta gui...\n${NC}"
                 yay -S borgbackup --noconfirm
                 yay -S vorta --noconfirm
                 ;;
-            28)
+            29)
                 printf "${YELLOW}Installing spotube...\n${NC}"
                 yay -S spotube-bin --noconfirm
                 ;;
