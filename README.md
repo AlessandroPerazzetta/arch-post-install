@@ -31,39 +31,39 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
 - jq
 - brave-browser
 - brave-browser extensions
-    * bypass-adblock-detection
-    * hls-downloader
-    * i-dont-care-about-cookies
-    * keepassxc-browser
-    * session-buddy
-    * the-marvellous-suspender
-    * url-tracking-stripper-red
-    * video-downloader-plus
-    * stream-cleaner
+  * bypass-adblock-detection
+  * hls-downloader
+  * i-dont-care-about-cookies
+  * keepassxc-browser
+  * session-buddy
+  * the-marvellous-suspender
+  * url-tracking-stripper-red
+  * video-downloader-plus
+  * stream-cleaner
 - remmina
 - codium
 - codium marketplace replacement (local config)
 - codium extensions installed
-    * bungcip.better-toml
-    * rust-lang.rust-analyzer
-    * jinxdash.prettier-rust
-    * kogia-sima.vscode-sailfish
-    * ms-python.python
-    * ms-python.vscode-pylance
-    * ms-vscode.cpptools
-    * serayuzgur.crates
-    * usernamehw.errorlens
-    * vadimcn.vscode-lldb
-    * jeff-hykin.better-cpp-syntax
-    * aaron-bond.better-comments
-    * vsciot-vscode.vscode-arduino
-    * kamikillerto.vscode-colorize
+  * bungcip.better-toml
+  * rust-lang.rust-analyzer
+  * jinxdash.prettier-rust
+  * kogia-sima.vscode-sailfish
+  * ms-python.python
+  * ms-python.vscode-pylance
+  * ms-vscode.cpptools
+  * serayuzgur.crates
+  * usernamehw.errorlens
+  * vadimcn.vscode-lldb
+  * jeff-hykin.better-cpp-syntax
+  * aaron-bond.better-comments
+  * vsciot-vscode.vscode-arduino
+  * kamikillerto.vscode-colorize
 - codium extensions uninstalled
-    * ms-toolsai.jupyter
-    * ms-toolsai.jupyter-keymap
-    * ms-toolsai.jupyter-renderers
-    * ms-toolsai.vscode-jupyter-cell-tags
-    * ms-toolsai.vscode-jupyter-slideshow
+  * ms-toolsai.jupyter
+  * ms-toolsai.jupyter-keymap
+  * ms-toolsai.jupyter-renderers
+  * ms-toolsai.vscode-jupyter-cell-tags
+  * ms-toolsai.vscode-jupyter-slideshow
 - marktext
 - dbeaver-ce_latest_amd64
 - smartgit-latest
@@ -81,11 +81,14 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
 - borgbackup + vorta gui
 - spotube
 
-# List installed scripts:
+# ~~List installed scripts:~~
 
 - vscodium-json-updater.sh
+  
+  > Replaced with local user .config custom product.json file
 
 # List installed languagess:
+
 - rust
 
 # Extra:
