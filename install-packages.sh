@@ -81,8 +81,6 @@ then
     makepkg -si
     yay -Syu
 
-
-
     for choice in $choices
     do
         case $choice in
