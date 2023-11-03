@@ -67,6 +67,7 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
 - marktext
 - dbeaver-ce_latest_amd64
 - smartgit-latest
+- arduino-cli
 - keepassxc
 - qownnotes
 - virtualbox
