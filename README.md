@@ -2,6 +2,10 @@
 
 wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install/main/install-packages.sh | bash
 
+# List system tweaks:
+
+- system Serial permission for user
+
 # List of required installed packages:
 
 - dialog
