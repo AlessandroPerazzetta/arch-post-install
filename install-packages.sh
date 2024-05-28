@@ -120,11 +120,9 @@ then
             neovim)
                 printf "${YELLOW}Installing neovim...\n${NC}"
                 sudo pacman -Sy neovim
-
                 printf "${YELLOW}Installing neovim resources...\n${NC}"
                 mkdir -p ~/.config/nvim/
                 curl -fsSLo ~/.config/nvim/init.vim https://raw.githubusercontent.com/AlessandroPerazzetta/neovim-res/main/.config/nvim/init.vim
-
                 printf "${YELLOW}Set nvim as default editor...\n${NC}"
                 sudo sed -i -e "s/EDITOR=nano/EDITOR=vi/g" /etc/environment
                 printf "${YELLOW}Create vi nvim symbolic link...\n${NC}"
@@ -189,18 +187,17 @@ then
             vscodium)
                 printf "${YELLOW}Installing vscodium...\n${NC}"
                 yay -S vscodium --noconfirm
-
+                # --------------------------------------------------------------------------------------------------
                 # OLD Script to replace marketplace in extensionsGallery on products.json
                 # printf "${YELLOW}Installing vscodium extension gallery updater...\n${NC}"
                 # cd /usr/local/sbin/
                 # sudo git clone https://github.com/AlessandroPerazzetta/vscodium-json-updater
                 # cd -
                 # sudo /usr/local/sbin/vscodium-json-updater/update.sh
-
+                # -------------------------------------------------------------------------------------------------- 
                 # NEW Script to replace marketplace in extensionsGallery on products.json (local user config)
                 mkdir -p ~/.config/VSCodium/
                 bash -c "echo -e '{\n  \"nameShort\": \"Visual Studio Code\",\n  \"nameLong\": \"Visual Studio Code\",\n  \"extensionsGallery\": {\n    \"serviceUrl\": \"https://marketplace.visualstudio.com/_apis/public/gallery\",\n    \"cacheUrl\": \"https://vscode.blob.core.windows.net/gallery/index\",\n    \"itemUrl\": \"https://marketplace.visualstudio.com/items\"\n  }\n}\n' > ~/.config/VSCodium/product.json"
-
                 printf "${YELLOW}Installing nemo action for vscodium...\n${NC}"
                 #sudo wget https://raw.githubusercontent.com/AlessandroPerazzetta/nemo-actions-vscodium-launcher/main/codium.nemo_action -O ~/.local/share/nemo/actions/codium.nemo_action
                 mkdir -p ~/.local/share/nemo/actions/
