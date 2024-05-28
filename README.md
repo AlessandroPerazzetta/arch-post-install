@@ -61,6 +61,7 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
   * kamikillerto.vscode-colorize
   * oderwat.indent-rainbow
   * eamodio.gitlens
+  * evgeniypeshkov.syntax-highlighter
 - codium extensions uninstalled
   * ms-toolsai.jupyter
   * ms-toolsai.jupyter-keymap
@@ -123,6 +124,9 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
   * oderwat.indent-rainbow
 - Git supercharged
   * eamodio.gitlens
+- Syntax highlighting based on Tree-sitter
+  * evgeniypeshkov.syntax-highlighter
+
 # List installed languagess:
 
 - rust
