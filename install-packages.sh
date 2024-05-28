@@ -197,7 +197,7 @@ then
             vscodium)
                 printf "${YELLOW}Installing vscodium...\n${NC}"
 
-                # https://github.com/VSCodium/vscodium/issues/1565
+				# https://github.com/VSCodium/vscodium/issues/1710
                 # vscodium from sources requires 8Gb memory to compile
                 MEMMIN=8174650    
                 MEMTOT=$(grep MemTotal /proc/meminfo | awk '{print $2}')
