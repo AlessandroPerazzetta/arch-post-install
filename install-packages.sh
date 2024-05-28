@@ -20,13 +20,13 @@ LGRAY='\033[0;37m'
 WHITE='\033[1;37m'
 NC='\033[0m' # No Color
 
-
 if ! command -v dialog &> /dev/null
 then
-    echo "dialog could not be found, installing ..."
+    printf "${RED}dialog could not be found, installing ...\n${NC}"
     sudo pacman -Sy
     sudo pacman -Sy dialog
-    # exit 1
+    printf "${RED}dialog installed, relaunch ...\n${NC}"
+    exit 1
 fi
 
 cmd=(dialog --title "Automated packages installation" --backtitle "Arch Post Install" --no-collapse --separate-output --checklist "Select options:" 22 76 16)
