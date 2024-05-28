@@ -79,12 +79,16 @@ then
     sudo systemctl enable sshd
     sudo systemctl start sshd
 
-    printf "${YELLOW}Install AUR packages...\n${NC}"
-    sleep 1
-    git clone https://aur.archlinux.org/yay-bin.git
-    cd yay-bin
-    makepkg -si
-    yay -Syu
+    if ! command -v yay &> /dev/null
+    then
+        printf "${YELLOW}Install AUR packages...\n${NC}"
+        sleep 1
+        git clone https://aur.archlinux.org/yay-bin.git
+        cd yay-bin
+        makepkg -si
+        yay -Syu
+    fi
+
 
     for choice in $choices
     do
