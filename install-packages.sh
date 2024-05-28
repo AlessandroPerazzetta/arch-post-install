@@ -53,6 +53,7 @@ rust "rust" on
 py_36 "python 3.6 (AUR install)" off
 py_38 "python 3.8 (AUR install)" off
 qt_stuff "qtcreator + qt5" off
+ssh_alive "ssh-alive-settings" on
 borgbackup_vorta "borgbackup + vorta gui" on
 spotube "spotube (AUR install)" off)
 
@@ -316,6 +317,15 @@ then
             qt_stuff)
                 printf "${YELLOW}Installing qtcreator, qt5 and related stuff, cmake...\n${NC}"
                 sudo pacman -Sy qtcreator
+                ;;
+            ssh_alive)
+                printf "${YELLOW}Installing ssh alive settings...\n${NC}"
+                printf "${LCYAN}--------------------------------------------------------------------------------\n${LRED}"
+                printf "Original copy of ssh_config is available in /etc/ssh/ssh_config.ORIGINAL\n"
+                printf "${LCYAN}--------------------------------------------------------------------------------\n${NC}"
+                sudo cp /etc/ssh/ssh_config /etc/ssh/ssh_config.ORIGINAL
+                sudo sed -i -e "s/ServerAliveInterval 240/ServerAliveInterval 15/g" /etc/ssh/ssh_config
+                sudo bash -c 'echo "    ServerAliveCountMax=1" >> /etc/ssh/ssh_config'
                 ;;
             borgbackup_vorta)
                 printf "${YELLOW}Installing borgbackup and vorta gui...\n${NC}"
