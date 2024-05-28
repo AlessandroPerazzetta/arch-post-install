@@ -196,7 +196,19 @@ then
                 ;;
             vscodium)
                 printf "${YELLOW}Installing vscodium...\n${NC}"
-                yay -S vscodium --noconfirm
+
+                # https://github.com/VSCodium/vscodium/issues/1565
+                # vscodium from sources requires 8Gb memory to compile
+                MEMMIN=8174650    
+                MEMTOT=$(grep MemTotal /proc/meminfo | awk '{print $2}')
+                if [ $MEMTOT -gt $MEMMIN ]
+                then
+                    printf "${YELLOW}Installing vscodium sources...\n${NC}"
+                    yay -S vscodium --noconfirm
+                else
+                    printf "${YELLOW}Installing vscodium binary...\n${NC}"
+                    yay -S vscodium-bin --noconfirm
+                fi
                 # --------------------------------------------------------------------------------------------------
                 # OLD Script to replace marketplace in extensionsGallery on products.json
                 # printf "${YELLOW}Installing vscodium extension gallery updater...\n${NC}"
