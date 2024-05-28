@@ -20,8 +20,14 @@ LGRAY='\033[0;37m'
 WHITE='\033[1;37m'
 NC='\033[0m' # No Color
 
-# sudo pacman -Sy
-sudo pacman -Sy dialog
+
+if ! command -v dialog &> /dev/null
+then
+    echo "dialog could not be found, installing ..."
+    sudo pacman -Sy
+    sudo pacman -Sy dialog
+    # exit 1
+fi
 
 cmd=(dialog --title "Automated packages installation" --backtitle "Arch Post Install" --no-collapse --separate-output --checklist "Select options:" 22 76 16)
 options=(
