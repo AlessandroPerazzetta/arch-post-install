@@ -40,6 +40,7 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
   * url-tracking-stripper-red
   * video-downloader-plus
   * stream-cleaner
+  * youtube-nonstop
 - remmina
 - codium
 - codium marketplace replacement (local config)
@@ -58,6 +59,8 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
   * aaron-bond.better-comments
   * vsciot-vscode.vscode-arduino
   * kamikillerto.vscode-colorize
+  * oderwat.indent-rainbow
+  * eamodio.gitlens
 - codium extensions uninstalled
   * ms-toolsai.jupyter
   * ms-toolsai.jupyter-keymap
@@ -116,7 +119,10 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
   * vsciot-vscode.vscode-arduino
 - A vscode extension to help visualize css colors in files.
   * kamikillerto.vscode-colorize
-
+- A simple extension to make indentation more readable
+  * oderwat.indent-rainbow
+- Git supercharged
+  * eamodio.gitlens
 # List installed languagess:
 
 - rust

@@ -25,38 +25,36 @@ sudo pacman -S dialog
 
 cmd=(dialog --title "Automated packages installation" --backtitle "Arch Post Install" --no-collapse --separate-output --checklist "Select options:" 22 76 16)
 options=(
-0 "Personal resources" on
-1 "System Serial permission" on
-2 "Xed theme resources" on
-3 "Gedit theme resources" off
-4 "bwm-ng" on
-5 "screen" on
-6 "neovim" on
-7 "filezilla" on
-8 "meld" on
-9 "vlc" on
-10 "htop" on
-11 "brave-browser" on
-12 "brave-browser extensions" on
-13 "remmina" on
-14 "vscodium" on
-15 "vscodium extensions" on
-16 "marktext" on
-17 "dbeaver" on
-18 "smartgit" on
-19 "arduino-cli" on
-20 "keepassxc" on
-21 "qownnotes" on
-22 "virtualbox" on
-23 "kicad" on
-24 "freecad" on
-25 "telegram" on
-26 "rust" on
-27 "python 3.6 (AUR install)" off
-28 "python 3.8 (AUR install)" off
-29 "qtcreator + qt5" off
-30 "borgbackup + vorta gui" on
-31 "spotube (AUR install)" off)
+personal_res "Personal resources" on
+sys_serial "System Serial permission" on
+xed_res "Xed theme resources" on
+gedit_res "Gedit theme resources" off
+sys_utils "System utils" on
+neovim "neovim" on
+filezilla "filezilla" on
+meld "meld" on
+vlc "vlc" on
+brave "brave-browser" on
+brave_ext "brave-browser extensions" on
+remmina "remmina" on
+vscodium "vscodium" on
+vscodium_ext "vscodium extensions" on
+marktext "marktext" on
+dbeaver "dbeaver" on
+smartgit "smartgit" on
+arduino_cli "arduino-cli" on
+keepassxc "keepassxc" on
+qownnotes "qownnotes" on
+virtualbox "virtualbox" on
+kicad "kicad" on
+freecad "freecad" on
+telegram "telegram" on
+rust "rust" on
+py_36 "python 3.6 (AUR install)" off
+py_38 "python 3.8 (AUR install)" off
+qt_stuff "qtcreator + qt5" off
+borgbackup_vorta "borgbackup + vorta gui" on
+spotube "spotube (AUR install)" off)
 
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
@@ -84,12 +82,12 @@ then
     for choice in $choices
     do
         case $choice in
-            0)
+            personal_res)
                 printf "${YELLOW}Installing PERSONAL RESOURCES...\n${NC}"
                 printf "${YELLOW}Installing aliase resources...\n${NC}"
                 printf "alias l='ls -lah'\nalias cls='clear'" >> ~/.bashrc-personal
                 ;;
-            1)
+            sys_serial)
                 printf "${YELLOW}Installing system permissions to allow user open Serial...\n${NC}"
                 grep -Ei "^dialout" /etc/group;
                 if [ $? -eq 0 ]; then
@@ -104,25 +102,21 @@ then
                     printf "${RED}Dialout Group Not Exists can't add current user...\n${NC}"
                 fi
                 ;;
-            2)
+            xed_res)
                 printf "${YELLOW}Installing Xed resources...\n${NC}"
                 mkdir -p ~/.local/share/xed/styles/
                 curl -fsSLo ~/.local/share/xed/styles/kat-ng.xml https://raw.githubusercontent.com/AlessandroPerazzetta/xed-themes/main/kat-ng.xml
                 ;;
-            3)
+            gedit_res)
                 printf "${YELLOW}Installing Gedit resources...\n${NC}"
                 mkdir -p ~/.local/share/gedit/styles/
                 curl -fsSLo ~/.local/share/gedit/styles/kat-ng.xml https://raw.githubusercontent.com/AlessandroPerazzetta/xed-themes/main/kat-ng.xml
                 ;;
-            4)
-                printf "${YELLOW}Installing bwm-ng...\n${NC}"
-                sudo pacman -Sy bwm-ng
+            sys_utils)
+                printf "${YELLOW}Installing system utils...\n${NC}"
+                sudo pacman -Sy bwm-ng screen htop
                 ;;
-            5)
-                printf "${YELLOW}Installing screen...\n${NC}"
-                sudo pacman -Sy screen
-                ;;
-            6)
+            neovim)
                 printf "${YELLOW}Installing neovim...\n${NC}"
                 sudo pacman -Sy neovim
 
@@ -135,15 +129,15 @@ then
                 printf "${YELLOW}Create vi nvim symbolic link...\n${NC}"
                 sudo ln -s /usr/bin/nvim /usr/local/sbin/vi
                 ;;
-            7)
+            filezilla)
                 printf "${YELLOW}Installing filezilla...\n${NC}"
                 sudo pacman -Sy filezilla
                 ;;
-            8)
+            meld)
                 printf "${YELLOW}Installing meld...\n${NC}"
                 sudo pacman -Sy meld
                 ;;
-            9)
+            vlc)
                 printf "${YELLOW}Installing vlc...\n${NC}"
                 sudo pacman -Sy vlc
                 
@@ -151,15 +145,11 @@ then
                 mkdir -p ~/.local/share/vlc/
                 curl -fsSLo ~/.local/share/vlc/ml.xspf https://raw.githubusercontent.com/AlessandroPerazzetta/vlc-media-library/main/ml.xspf
                 ;;
-            10)
-                printf "${YELLOW}Installing htop...\n${NC}"
-                sudo pacman -Sy htop
-                ;;
-            11)
+            brave)
                 printf "${YELLOW}Installing brave-browser...\n${NC}"
                 yay -S brave-bin --noconfirm
                 ;;
-            12)
+            brave_ext)
                 printf "${YELLOW}Installing brave-browser extensions...\n${NC}"
                 BRAVE_PATH="/opt/brave-bin"
                 BRAVE_EXTENSIONS_PATH="$BRAVE_PATH/extensions"
@@ -176,6 +166,7 @@ then
                         ["url-tracking-stripper-red"]="flnagcobkfofedknnnmofijmmkbgfamf"
                         ["video-downloader-plus"]="njgehaondchbmjmajphnhlojfnbfokng"
                         ["stream-cleaner"]="lehcglgkjkamolcflammloedahjocbbg"
+                        ["youtube-nonstop"]="nlkaejimjacpillmajjnopmpbkbnocid"
                     )
                     for i in "${!EXTlist[@]}"; do
                         # echo "Key: $i value: ${EXTlist[$i]}"
@@ -190,11 +181,11 @@ then
                     printf "\n${NC}"
                 fi
                 ;;
-            13)
+            remmina)
                 printf "${YELLOW}Installing remmina...\n${NC}"
                 sudo pacman -Sy remmina
                 ;;
-            14)
+            vscodium)
                 printf "${YELLOW}Installing vscodium...\n${NC}"
                 yay -S vscodium --noconfirm
 
@@ -214,7 +205,7 @@ then
                 mkdir -p ~/.local/share/nemo/actions/
                 curl -fsSLo ~/.local/share/nemo/actions/codium.nemo_action https://raw.githubusercontent.com/AlessandroPerazzetta/nemo-actions-vscodium-launcher/main/codium.nemo_action
                 ;;
-            15)
+            vscodium_ext)
                 printf "${YELLOW}VSCodium extensions ...\n${NC}"
                 if ! command -v codium &> /dev/null
                 then
@@ -236,6 +227,8 @@ then
                     codium --install-extension aaron-bond.better-comments
                     codium --install-extension ahmadawais.shades-of-purple
                     codium --install-extension kamikillerto.vscode-colorize
+                    codium --install-extension oderwat.indent-rainbow
+                    codium --install-extension eamodio.gitlens
                     printf "${YELLOW}Uninstalling vscodium extensions ...\n${NC}"
                     codium --uninstall-extension ms-toolsai.jupyter
                     codium --uninstall-extension ms-toolsai.jupyter-keymap
@@ -244,7 +237,7 @@ then
                     codium --uninstall-extension ms-toolsai.vscode-jupyter-slideshow
                 fi
                 ;;
-            16)
+            marktext)
                 printf "${YELLOW}Installing Marktext editor...\n${NC}"
                 sudo mkdir -p /opt/marktext/
                 curl -s https://api.github.com/repos/marktext/marktext/releases/latest |grep "browser_download_url.*AppImage" |cut -d : -f 2,3 |tr -d \"| xargs -n 1 sudo curl -L -o /opt/marktext/marktext
@@ -256,29 +249,29 @@ then
                 sed -i -e "s/Icon=marktext/Icon=\/opt\/marktext\/marktext/g" ~/.local/share/applications/marktext.desktop
                 update-desktop-database ~/.local/share/applications/
                 ;;
-            17)
+            dbeaver)
                 printf "${YELLOW}Installing dbeaver...\n${NC}"
                 sudo pacman -Sy dbeaver
                 ;;
-            18)
+            smartgit)
                 printf "${YELLOW}Installing smartgit...\n${NC}"
                 yay -S smartgit --noconfirm
                 ;;
-            19)
+            arduino_cli)
                 printf "${YELLOW}Installing arduino-cli...\n${NC}"
                 sudo mkdir -p /opt/arduino-cli/
                 sudo chown "$CURRENT_USER":"$CURRENT_USER" /opt/arduino-cli
                 curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | BINDIR=/opt/arduino-cli sh
                 ;; 
-            20)
+            keepassxc)
                 printf "${YELLOW}Installing keepassxc...\n${NC}"
                 sudo pacman -Sy keepassxc
                 ;;
-            21)
+            qownnotes)
                 printf "${YELLOW}Installing qownnotes...\n${NC}"
                 yay -S qownnotes --noconfirm
                 ;;
-            22)
+            virtualbox)
                 printf "${YELLOW}Installing virtualbox...\n${NC}"
                 sudo pacman -Sy virtualbox virtualbox-guest-iso
                 sudo adduser $CURRENT_USER vboxusers
@@ -290,19 +283,19 @@ then
                 printf "${LCYAN}--------------------------------------------------------------------------------\n${GREEN}"
                 yay -S virtualbox-ext-oracle --noconfirm
                 ;;
-            23)
+            kicad)
                 printf "${YELLOW}Installing kicad...\n${NC}"
                 sudo pacman -Sy kicad kicad-library
                 ;;
-            24)
+            freecad)
                 printf "${YELLOW}Installing freecad...\n${NC}"
                 sudo pacman -Sy freecad
                 ;;
-            25)
+            telegram)
                 printf "${YELLOW}Installing telegram...\n${NC}"
                 sudo pacman -Sy telegram-desktop
                 ;;
-            26)
+            rust)
                 printf "${YELLOW}Installing rust...\n${NC}"
                 if ! command -v rustc &> /dev/null
                 then
@@ -311,24 +304,24 @@ then
                     printf "${RED}Installing rust, rustc found. Rust already present...\n${NC}"
                 fi
                 ;;
-            27)
+            py_36)
                 printf "${YELLOW}Installing python 3.6 (AUR install)...\n${NC}"
                 yay -S python36 --noconfirm
                 ;;
-            28)
+            py_38)
                 printf "${YELLOW}Installing python 3.8 (AUR install)...\n${NC}"
                 yay -S python38 --noconfirm
                 ;;
-            29)
+            qt_stuff)
                 printf "${YELLOW}Installing qtcreator, qt5 and related stuff, cmake...\n${NC}"
                 sudo pacman -Sy qtcreator
                 ;;
-            30)
+            borgbackup_vorta)
                 printf "${YELLOW}Installing borgbackup and vorta gui...\n${NC}"
                 yay -S borgbackup --noconfirm
                 yay -S vorta --noconfirm
                 ;;
-            31)
+            spotube)
                 printf "${YELLOW}Installing spotube...\n${NC}"
                 yay -S spotube-bin --noconfirm
                 ;;
