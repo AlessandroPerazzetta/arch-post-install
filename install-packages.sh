@@ -24,7 +24,7 @@ if ! command -v dialog &> /dev/null
 then
     printf "${RED}dialog could not be found, installing ...\n${NC}"
     sudo pacman -Sy
-    sudo pacman -Sy dialog
+    sudo pacman -Sy dialog --noconfirm
     printf "${RED}dialog installed, relaunch ...\n${NC}"
     exit 1
 fi
@@ -70,12 +70,12 @@ if [ ${#choices} -gt 0 ]
 then
     printf "${YELLOW}Updating system...\n${NC}"
     sleep 1
-    sudo pacman -Syyu
+    sudo pacman -Syyu --noconfirm
 
     printf "${YELLOW}Install required packages...\n${NC}"
     sleep 1
-    sudo pacman -Sy --needed base-devel git openssh
-    sudo pacman -Sy xed curl python-pyserial jq wget kitty
+    sudo pacman -Sy --needed base-devel git openssh --noconfirm
+    sudo pacman -Sy xed curl python-pyserial jq wget kitty --noconfirm
     sudo systemctl enable sshd
     sudo systemctl start sshd
 
@@ -125,11 +125,11 @@ then
                 ;;
             sys_utils)
                 printf "${YELLOW}Installing system utils...\n${NC}"
-                sudo pacman -Sy bwm-ng screen htop
+                sudo pacman -Sy bwm-ng screen htop --noconfirm
                 ;;
             neovim)
                 printf "${YELLOW}Installing neovim...\n${NC}"
-                sudo pacman -Sy neovim
+                sudo pacman -Sy neovim --noconfirm
                 printf "${YELLOW}Installing neovim resources...\n${NC}"
                 mkdir -p ~/.config/nvim/
                 curl -fsSLo ~/.config/nvim/init.vim https://raw.githubusercontent.com/AlessandroPerazzetta/neovim-res/main/.config/nvim/init.vim
@@ -140,15 +140,15 @@ then
                 ;;
             filezilla)
                 printf "${YELLOW}Installing filezilla...\n${NC}"
-                sudo pacman -Sy filezilla
+                sudo pacman -Sy filezilla --noconfirm
                 ;;
             meld)
                 printf "${YELLOW}Installing meld...\n${NC}"
-                sudo pacman -Sy meld
+                sudo pacman -Sy meld --noconfirm
                 ;;
             vlc)
                 printf "${YELLOW}Installing vlc...\n${NC}"
-                sudo pacman -Sy vlc
+                sudo pacman -Sy vlc --noconfirm
                 
                 printf "${YELLOW}Installing vlc media library...\n${NC}"
                 mkdir -p ~/.local/share/vlc/
@@ -192,7 +192,7 @@ then
                 ;;
             remmina)
                 printf "${YELLOW}Installing remmina...\n${NC}"
-                sudo pacman -Sy remmina
+                sudo pacman -Sy remmina --noconfirm
                 ;;
             vscodium)
                 printf "${YELLOW}Installing vscodium...\n${NC}"
@@ -272,7 +272,7 @@ then
                 ;;
             dbeaver)
                 printf "${YELLOW}Installing dbeaver...\n${NC}"
-                sudo pacman -Sy dbeaver
+                sudo pacman -Sy dbeaver --noconfirm
                 ;;
             smartgit)
                 printf "${YELLOW}Installing smartgit...\n${NC}"
@@ -286,7 +286,7 @@ then
                 ;; 
             keepassxc)
                 printf "${YELLOW}Installing keepassxc...\n${NC}"
-                sudo pacman -Sy keepassxc
+                sudo pacman -Sy keepassxc --noconfirm
                 ;;
             qownnotes)
                 printf "${YELLOW}Installing qownnotes...\n${NC}"
@@ -294,7 +294,7 @@ then
                 ;;
             virtualbox)
                 printf "${YELLOW}Installing virtualbox...\n${NC}"
-                sudo pacman -Sy virtualbox virtualbox-guest-iso
+                sudo pacman -Sy virtualbox virtualbox-guest-iso --noconfirm
                 sudo adduser $CURRENT_USER vboxusers
                 sudo adduser $CURRENT_USER disk
                 sudo systemctl enable vboxweb.service 
@@ -306,15 +306,15 @@ then
                 ;;
             kicad)
                 printf "${YELLOW}Installing kicad...\n${NC}"
-                sudo pacman -Sy kicad kicad-library
+                sudo pacman -Sy kicad kicad-library --noconfirm
                 ;;
             freecad)
                 printf "${YELLOW}Installing freecad...\n${NC}"
-                sudo pacman -Sy freecad
+                sudo pacman -Sy freecad --noconfirm
                 ;;
             telegram)
                 printf "${YELLOW}Installing telegram...\n${NC}"
-                sudo pacman -Sy telegram-desktop
+                sudo pacman -Sy telegram-desktop --noconfirm
                 ;;
             rust)
                 printf "${YELLOW}Installing rust...\n${NC}"
@@ -335,7 +335,7 @@ then
                 ;;
             qt_stuff)
                 printf "${YELLOW}Installing qtcreator, qt5 and related stuff, cmake...\n${NC}"
-                sudo pacman -Sy qtcreator
+                sudo pacman -Sy qtcreator --noconfirm
                 ;;
             ssh_alive)
                 printf "${YELLOW}Installing ssh alive settings...\n${NC}"
