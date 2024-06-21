@@ -62,6 +62,7 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
   * oderwat.indent-rainbow
   * eamodio.gitlens
   * evgeniypeshkov.syntax-highlighter
+  * shd101wyy.markdown-preview-enhanced
 - codium extensions uninstalled
   * ms-toolsai.jupyter
   * ms-toolsai.jupyter-keymap
@@ -127,6 +128,8 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
   * eamodio.gitlens
 - Syntax highlighting based on Tree-sitter
   * evgeniypeshkov.syntax-highlighter
+- Markdown Preview Enhanced
+  * shd101wyy.markdown-preview-enhanced
 
 # List installed languagess:
 
