@@ -88,6 +88,7 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
 - python 3.8 (AUR install)
 - qtcreator + qt5 + qt5 lib + cmake
 - SSH alive interval (15) and count (1)
+- SSH skip check hosts
 - borgbackup + vorta gui
 - spotube
 
