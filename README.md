@@ -31,6 +31,7 @@ wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-insta
 - jq
 - brave-browser
 - brave-browser extensions
+  * ublock-origin
   * bypass-adblock-detection
   * hls-downloader
   * i-dont-care-about-cookies
