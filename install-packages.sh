@@ -44,6 +44,7 @@ brave "brave-browser" on
 brave_ext "brave-browser extensions" on
 remmina "remmina" on
 vscodium "vscodium" on
+vscode_nemo_actions "vscode_nemo_actions" on
 vscodium_ext "vscodium extensions" on
 marktext "marktext" on
 dbeaver "dbeaver" on
@@ -222,6 +223,10 @@ then
                 # NEW Script to replace marketplace in extensionsGallery on products.json (local user config)
                 mkdir -p ~/.config/VSCodium/
                 bash -c "echo -e '{\n  \"nameShort\": \"Visual Studio Code\",\n  \"nameLong\": \"Visual Studio Code\",\n  \"extensionsGallery\": {\n    \"serviceUrl\": \"https://marketplace.visualstudio.com/_apis/public/gallery\",\n    \"cacheUrl\": \"https://vscode.blob.core.windows.net/gallery/index\",\n    \"itemUrl\": \"https://marketplace.visualstudio.com/items\"\n  }\n}\n' > ~/.config/VSCodium/product.json"
+                printf "${YELLOW}Installing vscodium MS marketplace ENV in /etc/profile.d/vscode-market.sh ...\n${NC}"
+                sudo bash -c "echo -e 'export VSCODE_GALLERY_SERVICE_URL='https://marketplace.visualstudio.com/_apis/public/gallery'\nexport VSCODE_GALLERY_ITEM_URL='https://marketplace.visualstudio.com/items'\nexport VSCODE_GALLERY_CACHE_URL='https://vscode.blob.core.windows.net/gallery/index'\nexport VSCODE_GALLERY_CONTROL_URL=''' > /etc/profile.d/vscode-market.sh"
+                ;;
+            vscode_nemo_actions)
                 printf "${YELLOW}Installing nemo action for vscodium...\n${NC}"
                 #sudo wget https://raw.githubusercontent.com/AlessandroPerazzetta/nemo-actions-vscodium-launcher/main/codium.nemo_action -O ~/.local/share/nemo/actions/codium.nemo_action
                 mkdir -p ~/.local/share/nemo/actions/
@@ -268,6 +273,12 @@ then
                         codium --install-extension ${VSCODEEXTlistAdd[$i]} --log debug
                         printf "\n${NC}"
                     done
+
+                    printf "${LCYAN}Installing extension from file:\n${NC}"
+                    mkdir -p /tmp/vscodium_exts/ && cd /tmp/vscodium_exts/
+                    curl -s https://api.github.com/repos/jeanp413/open-remote-ssh/releases/latest | grep "browser_download_url.*vsix" | cut -d : -f 2,3 | tr -d \" | xargs curl -O -L
+                    find . -type f -name "*.vsix" -exec codium --install-extension {} --log debug \;
+
                     printf "${YELLOW}Uninstalling vscodium extensions ...\n${NC}"
                     declare -A VSCODEEXTlistDel=(
                         ["Jupyter: Jupyter notebook support, interactive programming and computing that supports Intellisense, debugging and more."]="ms-toolsai.jupyter"
