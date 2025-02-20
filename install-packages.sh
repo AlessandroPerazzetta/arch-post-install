@@ -20,16 +20,58 @@ LGRAY='\033[0;37m'
 WHITE='\033[1;37m'
 NC='\033[0m' # No Color
 
-if ! command -v dialog &> /dev/null
-then
-    printf "${RED}dialog could not be found, installing ...\n${NC}"
-    sudo pacman -Sy
-    sudo pacman -Sy dialog --noconfirm
-    printf "${RED}dialog installed, relaunch ...\n${NC}"
-    exit 1
-fi
+export NEWT_COLORS='
+    root=green,black
+    border=green,black
+    title=green,black
+    roottext=white,black
+    window=green,black
+    textbox=white,black
+    button=black,green
+    compactbutton=white,black
+    listbox=white,black
+    actlistbox=black,white
+    actsellistbox=black,green
+    checkbox=green,black
+    actcheckbox=black,green
+'
 
-cmd=(dialog --title "Automated packages installation" --backtitle "Arch Post Install" --no-collapse --separate-output --checklist "Select options:" 22 76 16)
+printf "${YELLOW}------------------------------------------------------------------\n${NC}"
+printf "${YELLOW}Starting ...\n${NC}"
+printf "${YELLOW}------------------------------------------------------------------\n${NC}"
+
+printf "${YELLOW}Updating system...\n${NC}"
+sleep 1
+sudo pacman -Sy
+
+printf "${YELLOW}Install required packages...\n${NC}"
+sleep 1
+
+# Function to check if a command exists
+command_exists() {
+    command -v $1 >/dev/null 2>&1
+}
+
+commands_to_check_exist=("curl" "git")
+for cmd in "${commands_to_check_exist[@]}"; do
+    # if ! command_exists $cmd; then
+    if ! command_exists $cmd; then
+        printf "${LCYAN}Command ${cmd} not found. Installing... \n${NC}"
+        sudo pacman -Sy $cmd --noconfirm
+        printf "\n${NC}"       
+    else
+        printf "${LGREEN}Command ${cmd} is already installed.\n${NC}"
+    fi
+done
+sleep 1
+
+read dialog <<< "$(which whiptail dialog 2> /dev/null)"
+[[ "$dialog" ]] || {
+    printf "${LRED}Neither whiptail nor dialog found\n${NC}"
+    exit 1
+}
+
+cmd=("$dialog" --title "Automated packages installation" --backtitle "Arch Post Install" --separate-output --checklist "Select options:" 22 76 16)
 options=(
 personal_res "Personal resources" on
 sys_serial "System Serial permission" on
