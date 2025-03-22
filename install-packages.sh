@@ -78,6 +78,7 @@ sys_serial "System Serial permission" on
 xed_res "Xed theme resources" on
 gedit_res "Gedit theme resources" off
 sys_utils "System utils" on
+tmux_res "tmux resources" on
 neovim "neovim" on
 filezilla "filezilla" on
 meld "meld" on
@@ -169,7 +170,11 @@ then
                 ;;
             sys_utils)
                 printf "${YELLOW}Installing system utils...\n${NC}"
-                sudo pacman -Sy bwm-ng screen htop --noconfirm
+                sudo pacman -Sy bwm-ng screen htop tmux --noconfirm
+                ;;
+            tmux_res)
+                printf "${YELLOW}Installing tmux resources...\n${NC}"
+                curl -fsSLo ~/.tmux.conf https://raw.githubusercontent.com/AlessandroPerazzetta/dotfiles/main/.tmux.conf
                 ;;
             neovim)
                 printf "${YELLOW}Installing neovim...\n${NC}"
