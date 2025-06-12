@@ -1,6 +1,6 @@
 # Arch post install flavour packages
 
-wget -O - https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install/main/install-packages.sh | bash
+curl -s https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install/main/install-packages.sh | bash
 
 # List system tweaks:
 
