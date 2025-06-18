@@ -295,12 +295,11 @@ then
                     #     - https://github.com/getcursor/cursor/issues/2976
                     #    ["C/C++: C/C++ IntelliSense, debugging, and code browsing."]="ms-vscode.cpptools"
 
-                    for i in "${!VSCODEEXTlistAdd[@]}"; do
-                        #echo "Key: $i value: ${VSCODEEXTlistAdd[$i]}"
-                        printf "${LCYAN}- Extension: ${i}\n${NC}"
-                        codium --install-extension ${VSCODEEXTlistAdd[$i]} --log debug
-                        printf "\n${NC}"
-                    done
+                    printf "${LCYAN}Installing extension from file:\n${NC}"
+                    mkdir -p /tmp/vscodium_exts/ && cd /tmp/vscodium_exts/
+                    curl -s https://api.github.com/repos/jeanp413/open-remote-ssh/releases/latest | grep "browser_download_url.*vsix" | cut -d : -f 2,3 | tr -d \" | xargs curl -O -L
+                    curl -s https://api.github.com/repos/microsoft/vscode-cpptools/releases/tags/v1.24.5 | grep "browser_download_url.*vsix"|grep "linux-x64" | cut -d : -f 2,3 | tr -d \" | xargs curl -O -L
+                    find . -type f -name "*.vsix" -exec codium --install-extension {} --log debug \;
 
                     declare -A VSCODEEXTlistAdd=(
                         ["Better Comments: Improve your code commenting by annotating with alert, informational, TODOs, and more!"]="aaron-bond.better-comments"
@@ -325,11 +324,12 @@ then
                         ["Shades of Purple: 🦄 A professional theme suite with hand-picked & bold shades of purple for your VS Code editor and terminal apps."]="ahmadawais.shades-of-purple"
                     )
 
-                    printf "${LCYAN}Installing extension from file:\n${NC}"
-                    mkdir -p /tmp/vscodium_exts/ && cd /tmp/vscodium_exts/
-                    curl -s https://api.github.com/repos/jeanp413/open-remote-ssh/releases/latest | grep "browser_download_url.*vsix" | cut -d : -f 2,3 | tr -d \" | xargs curl -O -L
-                    curl -s https://api.github.com/repos/microsoft/vscode-cpptools/releases/tags/v1.24.5 | grep "browser_download_url.*vsix"|grep "linux-x64" | cut -d : -f 2,3 | tr -d \" | xargs curl -O -L
-                    find . -type f -name "*.vsix" -exec codium --install-extension {} --log debug \;
+                    for i in "${!VSCODEEXTlistAdd[@]}"; do
+                        #echo "Key: $i value: ${VSCODEEXTlistAdd[$i]}"
+                        printf "${LCYAN}- Extension: ${i}\n${NC}"
+                        codium --install-extension ${VSCODEEXTlistAdd[$i]} --log debug
+                        printf "\n${NC}"
+                    done
 
                     printf "${YELLOW}Uninstalling vscodium extensions ...\n${NC}"
                     declare -A VSCODEEXTlistDel=(
