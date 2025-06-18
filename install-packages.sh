@@ -294,7 +294,6 @@ then
                     #     - https://github.com/VSCodium/vscodium/issues/2300
                     #     - https://github.com/getcursor/cursor/issues/2976
                     #    ["C/C++: C/C++ IntelliSense, debugging, and code browsing."]="ms-vscode.cpptools"
-
                     printf "${LCYAN}Installing extension from file:\n${NC}"
                     mkdir -p /tmp/vscodium_exts/ && cd /tmp/vscodium_exts/
                     curl -s https://api.github.com/repos/jeanp413/open-remote-ssh/releases/latest | grep "browser_download_url.*vsix" | cut -d : -f 2,3 | tr -d \" | xargs curl -O -L
@@ -303,7 +302,7 @@ then
 
                     declare -A VSCODEEXTlistAdd=(
                         ["Better Comments: Improve your code commenting by annotating with alert, informational, TODOs, and more!"]="aaron-bond.better-comments"
-                        ["Better TOML: Better TOML Language support"]="bungcip.better-toml"
+                        ["Even Better TOML: Fully-featured TOML support"]="tamasfe.even-better-toml"
                         ["Prettier - Code formatter: Code formatter using prettier"]="esbenp.prettier-vscode"
                         ["Syntax Highlighter: Syntax highlighting based on Tree-sitter"]="evgeniypeshkov.syntax-highlighter"
                         ["Better C++ Syntax: The bleeding edge of the C++ syntax"]="jeff-hykin.better-cpp-syntax"
@@ -318,12 +317,12 @@ then
                         ["CodeLLDB: A native debugger powered by LLDB. Debug C++, Rust and other compiled languages."]="vadimcn.vscode-lldb"
                         ["Prettier - Code formatter (Rust): Prettier Rust is a code formatter that autocorrects bad syntax"]="jinxdash.prettier-rust"
                         ["rust-analyzer: Rust language support for Visual Studio Code"]="rust-lang.rust-analyzer"
+                        ["Dependi: Empowers developers to efficiently manage dependencies and address vulnerabilities in Rust, Go, JavaScript, Typescript, PHP and Python projects."]="fill-labs.dependi"
                         ["Markdown Preview Enhanced: Markdown Preview Enhanced ported to vscode"]="shd101wyy.markdown-preview-enhanced"
-                        ["GitLens — Git supercharged: Supercharge Git within VS Code"]="eamodio.gitlens"
                         ["Error Lens: Improve highlighting of errors, warnings and other language diagnostics."]="usernamehw.errorlens"
+                        ["Todo Tree: Show TODO, FIXME, etc. comment tags in a tree view"]="Gruntfuggly.todo-tree"
                         ["Shades of Purple: 🦄 A professional theme suite with hand-picked & bold shades of purple for your VS Code editor and terminal apps."]="ahmadawais.shades-of-purple"
                     )
-
                     for i in "${!VSCODEEXTlistAdd[@]}"; do
                         #echo "Key: $i value: ${VSCODEEXTlistAdd[$i]}"
                         printf "${LCYAN}- Extension: ${i}\n${NC}"
