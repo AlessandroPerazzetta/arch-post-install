@@ -41,6 +41,7 @@ curl -s https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install
   * url-tracking-stripper-red
   * video-downloader-plus
   * youtube-nonstop
+  * user-agent-switcher-for-c
 - brave-browser extensions removed
   * ~~stream-cleaner~~
 - remmina
