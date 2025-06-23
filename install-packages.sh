@@ -71,42 +71,99 @@ read dialog <<< "$(which whiptail dialog 2> /dev/null)"
     exit 1
 }
 
+# Define all options and their default status in an array of "key|desc|default"
+ALL_OPTIONS=(
+    "personal_res|Personal resources|on"
+    "sys_serial|System Serial permission|on"
+    "xed_res|Xed theme resources|on"
+    "gedit_res|Gedit theme resources|off"
+    "sys_utils|System utils|on"
+    "tmux_res|tmux resources|on"
+    "neovim|neovim|on"
+    "filezilla|filezilla|on"
+    "meld|meld|on"
+    "vlc|vlc|on"
+    "brave|brave-browser|on"
+    "brave_ext|brave-browser extensions|on"
+    "remmina|remmina|on"
+    "vscodium|vscodium|on"
+    "vscode_nemo_actions|vscode_nemo_actions|on"
+    "vscodium_ext|vscodium extensions|on"
+    "marktext|marktext|on"
+    "dbeaver|dbeaver|on"
+    "smartgit|smartgit|off"
+    "arduino_cli|arduino-cli|on"
+    "keepassxc|keepassxc|on"
+    "qownnotes|qownnotes|on"
+    "virtualbox|virtualbox|on"
+    "kicad|kicad|on"
+    "freecad|freecad|on"
+    "telegram|telegram|on"
+    "rust|rust|on"
+    "py_36|python 3.6 (AUR install)|off"
+    "py_38|python 3.8 (AUR install)|off"
+    "qt_stuff|qtcreator + qt5|off"
+    "ssh_alive|ssh-alive-settings|on"
+    "ssh_skip_hosts_check|ssh-skip-hosts-check-settings|on"
+    "borgbackup_vorta|borgbackup + vorta gui|on"
+    "spotube|spotube (AUR install)|off"
+)
+
+# Parse arguments
+ALL_OFF=false
+for arg in "$@"; do
+    [[ "$arg" == "--none" ]] && ALL_OFF=true
+done
+
+# Build options array for dialog/whiptail
+options=()
+for opt in "${ALL_OPTIONS[@]}"; do
+    IFS='|' read -r key desc def <<< "$opt"
+    if $ALL_OFF; then
+        options+=("$key" "$desc" "off")
+    else
+        options+=("$key" "$desc" "$def")
+    fi
+done
+
 cmd=("$dialog" --title "Automated packages installation" --backtitle "Arch Post Install" --separate-output --checklist "Select options:" 22 76 16)
-options=(
-personal_res "Personal resources" on
-sys_serial "System Serial permission" on
-xed_res "Xed theme resources" on
-gedit_res "Gedit theme resources" off
-sys_utils "System utils" on
-tmux_res "tmux resources" on
-neovim "neovim" on
-filezilla "filezilla" on
-meld "meld" on
-vlc "vlc" on
-brave "brave-browser" on
-brave_ext "brave-browser extensions" on
-remmina "remmina" on
-vscodium "vscodium" on
-vscode_nemo_actions "vscode_nemo_actions" on
-vscodium_ext "vscodium extensions" on
-marktext "marktext" on
-dbeaver "dbeaver" on
-smartgit "smartgit" off
-arduino_cli "arduino-cli" on
-keepassxc "keepassxc" on
-qownnotes "qownnotes" on
-virtualbox "virtualbox" on
-kicad "kicad" on
-freecad "freecad" on
-telegram "telegram" on
-rust "rust" on
-py_36 "python 3.6 (AUR install)" off
-py_38 "python 3.8 (AUR install)" off
-qt_stuff "qtcreator + qt5" off
-ssh_alive "ssh-alive-settings" on
-ssh_skip_hosts_check "ssh-skip-hosts-check-settings" on
-borgbackup_vorta "borgbackup + vorta gui" on
-spotube "spotube (AUR install)" off)
+# options=(
+# personal_res "Personal resources" on
+# sys_serial "System Serial permission" on
+# xed_res "Xed theme resources" on
+# gedit_res "Gedit theme resources" off
+# sys_utils "System utils" on
+# tmux_res "tmux resources" on
+# neovim "neovim" on
+# filezilla "filezilla" on
+# meld "meld" on
+# vlc "vlc" on
+# brave "brave-browser" on
+# brave_ext "brave-browser extensions" on
+# remmina "remmina" on
+# vscodium "vscodium" on
+# vscode_nemo_actions "vscode_nemo_actions" on
+# vscodium_ext "vscodium extensions" on
+# marktext "marktext" on
+# dbeaver "dbeaver" on
+# smartgit "smartgit" off
+# arduino_cli "arduino-cli" on
+# keepassxc "keepassxc" on
+# qownnotes "qownnotes" on
+# virtualbox "virtualbox" on
+# kicad "kicad" on
+# freecad "freecad" on
+# telegram "telegram" on
+# rust "rust" on
+# py_36 "python 3.6 (AUR install)" off
+# py_38 "python 3.8 (AUR install)" off
+# qt_stuff "qtcreator + qt5" off
+# ssh_alive "ssh-alive-settings" on
+# ssh_skip_hosts_check "ssh-skip-hosts-check-settings" on
+# borgbackup_vorta "borgbackup + vorta gui" on
+# spotube "spotube (AUR install)" off)
+
+# choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
