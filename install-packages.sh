@@ -134,9 +134,10 @@ then
         # yay -Syu
 
         printf "${YELLOW}Install yay git package from AUR...\n${NC}"
-        git clone https://aur.archlinux.org/yay.git
-        cd yay
-        makepkg -si
+        # git clone https://aur.archlinux.org/yay.git
+        # cd yay
+        # makepkg -si
+        git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
         yay -Syu
     fi
 
