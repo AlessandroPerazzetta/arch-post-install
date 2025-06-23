@@ -126,10 +126,16 @@ then
 
     if ! command -v yay &> /dev/null
     then
-        printf "${YELLOW}Install AUR packages...\n${NC}"
-        sleep 1
-        git clone https://aur.archlinux.org/yay-bin.git
-        cd yay-bin
+        # printf "${YELLOW}Install AUR packages...\n${NC}"
+        # sleep 1
+        # git clone https://aur.archlinux.org/yay-bin.git
+        # cd yay-bin
+        # makepkg -si
+        # yay -Syu
+
+        printf "${YELLOW}Install yay git package from AUR...\n${NC}"
+        git clone https://aur.archlinux.org/yay.git
+        cd yay
         makepkg -si
         yay -Syu
     fi
