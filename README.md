@@ -1,6 +1,13 @@
 # Arch post install flavour packages
 
+Run with predefined options:
+```bash
 curl -s https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install/main/install-packages.sh | bash
+```
+Uncheck all options:
+```bash
+curl -s https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install/main/install-packages.sh | bash -s -- --none
+```
 
 # List system tweaks:
 
