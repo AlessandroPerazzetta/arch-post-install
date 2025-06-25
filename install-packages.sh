@@ -215,10 +215,6 @@ then
         # yay -Syu
 
         printf "${YELLOW}Install yay git package from AUR...\n${NC}"
-        # git clone https://aur.archlinux.org/yay.git
-        # cd yay
-        # makepkg -si
-
         cd /tmp/
         if [ -d yay ]; then
             printf "${YELLOW}yay directory already exists, delete before git clone...\n${NC}"
