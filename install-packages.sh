@@ -218,12 +218,14 @@ then
         # git clone https://aur.archlinux.org/yay.git
         # cd yay
         # makepkg -si
+
+        cd /tmp/
         if [ -d yay ]; then
             printf "${YELLOW}yay directory already exists, delete before git clone...\n${NC}"
             rm -rf yay
         fi
-        git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
-        yay -Syu
+        git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm && yay -Syu
+        cd -
     fi
 
 
