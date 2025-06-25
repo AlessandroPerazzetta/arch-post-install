@@ -68,6 +68,8 @@ sleep 1
 read dialog <<< "$(which whiptail dialog 2> /dev/null)"
 [[ "$dialog" ]] || {
     printf "${LRED}Neither whiptail nor dialog found\n${NC}"
+    printf "${YELLOW}Consider installing whiptail with:\n${NC}"
+    printf "${ORANGE}pacman -S libnewt\n${NC}"
     exit 1
 }
 
