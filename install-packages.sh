@@ -82,9 +82,12 @@ read dialog <<< "$(which whiptail dialog 2> /dev/null)"
 ALL_OPTIONS=(
     "personal_res|Personal resources|on"
     "sys_serial|System Serial permission|on"
+    "xed|Xed|on"
     "xed_res|Xed theme resources|on"
     "gedit_res|Gedit theme resources|off"
     "sys_utils|System utils|on"
+    "kitty|Kitty|on"
+    "kitty_res|Kitty resources|on"
     "tmux_res|tmux resources|on"
     "neovim|neovim|on"
     "filezilla|filezilla|on"
@@ -146,7 +149,7 @@ then
     printf "${YELLOW}Install required packages...\n${NC}"
     sleep 1
     sudo pacman -Sy --needed base-devel git openssh --noconfirm
-    sudo pacman -Sy xed curl python-pyserial jq wget kitty --noconfirm
+    sudo pacman -Sy curl jq wget --noconfirm
     sudo systemctl enable sshd
     sudo systemctl start sshd
 
@@ -181,6 +184,8 @@ then
                 printf "alias l='ls -lah'\nalias cls='clear'" >> ~/.bashrc-personal
                 ;;
             sys_serial)
+                printf "${YELLOW}Installing python pyserial...\n${NC}"
+                pacman -S python-pyserial                
                 printf "${YELLOW}Installing system permissions to allow user open Serial...\n${NC}"
                 grep -Ei "^uucp" /etc/group;
                 if [ $? -eq 0 ]; then
@@ -194,6 +199,10 @@ then
                 else
                     printf "${RED}uucp Group Not Exists can't add current user...\n${NC}"
                 fi
+                ;;
+            xed)
+                printf "${YELLOW}Installing xed...\n${NC}"
+                sudo pacman -Sy xed --noconfirm
                 ;;
             xed_res)
                 printf "${YELLOW}Installing Xed resources...\n${NC}"
@@ -209,6 +218,23 @@ then
                 printf "${YELLOW}Installing system utils...\n${NC}"
                 sudo pacman -Sy bwm-ng screen htop tmux --noconfirm
                 ;;
+            kitty)
+                printf "${YELLOW}Installing kitty terminal...\n${NC}"
+                sudo pacman -Sy kitty --noconfirm
+                ;;
+            kitty_res)
+                printf "${YELLOW}Installing kitty resources...\n${NC}"
+                printf "${YELLOW}Installing kitty resources from git sparse checkout...\n${NC}"
+                mkdir -p /tmp/dotfiles-kitty.git
+                cd /tmp/dotfiles-kitty.git
+                git init
+                git remote add origin -f https://github.com/AlessandroPerazzetta/dotfiles
+                git sparse-checkout set kitty
+                git pull origin main
+                mv kitty ~/.config/
+                cd -
+                rm -rf /tmp/dotfiles-kitty.git
+                ;;    
             tmux_res)
                 printf "${YELLOW}Installing tmux resources...\n${NC}"
                 # curl -fsSLo ~/.tmux.conf https://raw.githubusercontent.com/AlessandroPerazzetta/dotfiles/main/.tmux.conf
