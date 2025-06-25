@@ -40,6 +40,11 @@ printf "${YELLOW}---------------------------------------------------------------
 printf "${YELLOW}Starting ...\n${NC}"
 printf "${YELLOW}------------------------------------------------------------------\n${NC}"
 
+if [ "$EUID" -eq 0 ]; then
+    printf "${LRED}Do not run this script as root. Please run as a regular user.${NC}\n"
+    exit 1
+fi
+
 printf "${YELLOW}Updating system...\n${NC}"
 sleep 1
 sudo pacman -Sy
@@ -215,7 +220,8 @@ then
                 git sparse-checkout set tmux
                 git pull origin main
                 mv tmux ~/.config/
-                cd -                
+                cd -
+                rm -rf /tmp/dotfiles-tmux.git
                 ;;
             neovim)
                 printf "${YELLOW}Installing neovim...\n${NC}"
