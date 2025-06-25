@@ -9,33 +9,36 @@ Uncheck all options:
 curl -s https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install/main/install-packages.sh | bash -s -- --none
 ```
 
-# List system tweaks:
-
-- system Serial permission for user
-
 # List of required installed packages:
+- dialog/whiptail
 
-- dialog
+# List system tweaks:
+- system Serial permission for user
+- python-pyserial
+
+# List of force installed packages:
 - base-devel
 - git
 - openssh
-- xed
 - curl
-- python-pyserial
 - jq
 - wget
 
 # List of selectable installed packages:
-
-- bwm-ng 
 - screen
-- neovim 
-- filezilla 
-- meld 
-- vlc 
-- git 
-- htop 
-- jq
+- tmux
+- tmux resources
+- kitty
+- kitty resources
+- vim
+- vim resources
+- neovim
+- neovim resources
+- filezilla
+- meld
+- vlc
+- git
+- htop
 - brave-browser
 - brave-browser extensions
   * ublock-origin

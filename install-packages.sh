@@ -88,7 +88,11 @@ ALL_OPTIONS=(
     "sys_utils|system utils|on"
     "kitty|kitty|on"
     "kitty_res|kitty resources|on"
+    "screen|screen|on"
+    "tmux|tmux|on"
     "tmux_res|tmux resources|on"
+    "vim|vim|on"
+    "vim_res|vim resources|on"
     "neovim|neovim|on"
     "filezilla|filezilla|on"
     "meld|meld|on"
@@ -150,8 +154,18 @@ then
     sleep 1
     sudo pacman -Sy --needed base-devel git openssh --noconfirm
     sudo pacman -Sy curl jq wget --noconfirm
-    sudo systemctl enable sshd
-    sudo systemctl start sshd
+
+    if ! command -v sshd &> /dev/null; then
+        printf "${YELLOW}openssh not found. Installing openssh...\n${NC}"
+        sudo pacman -Sy openssh --noconfirm
+    fi
+    if ! systemctl is-enabled --quiet sshd; then
+        printf "${YELLOW}Enabling and starting sshd service...\n${NC}"
+        sudo systemctl enable sshd
+        sudo systemctl start sshd
+    else
+        printf "${LGREEN}sshd service is already enabled.\n${NC}"
+    fi
 
     if ! command -v yay &> /dev/null
     then
@@ -216,7 +230,7 @@ then
                 ;;
             sys_utils)
                 printf "${YELLOW}Installing system utils...\n${NC}"
-                sudo pacman -Sy bwm-ng screen htop tmux --noconfirm
+                sudo pacman -Sy bwm-ng htop --noconfirm
                 ;;
             kitty)
                 printf "${YELLOW}Installing kitty terminal...\n${NC}"
@@ -234,7 +248,15 @@ then
                 mv kitty ~/.config/
                 cd -
                 rm -rf /tmp/dotfiles-kitty.git
-                ;;    
+                ;;
+            screen)
+                printf "${YELLOW}Installing screen...\n${NC}"
+                sudo pacman -Sy screen --noconfirm
+                ;;
+            tmux)
+                printf "${YELLOW}Installing tmux...\n${NC}"
+                sudo pacman -Sy tmux --noconfirm
+                ;;
             tmux_res)
                 printf "${YELLOW}Installing tmux resources...\n${NC}"
                 # curl -fsSLo ~/.tmux.conf https://raw.githubusercontent.com/AlessandroPerazzetta/dotfiles/main/.tmux.conf
@@ -248,6 +270,23 @@ then
                 mv tmux ~/.config/
                 cd -
                 rm -rf /tmp/dotfiles-tmux.git
+                ;;
+            vim)
+                printf "${YELLOW}Installing vim...\n${NC}"
+                sudo pacman -Sy vim --noconfirm
+                ;;
+            vim_res)
+                printf "${YELLOW}Installing vim resources...\n${NC}"
+                printf "${YELLOW}Installing vim resources from git sparse checkout...\n${NC}"
+                mkdir -p /tmp/dotfiles-vim.git
+                cd /tmp/dotfiles-vim.git
+                git init
+                git remote add origin -f https://github.com/AlessandroPerazzetta/dotfiles
+                git sparse-checkout set vim
+                git pull origin main
+                mv vim/.vimrc ~/.config/
+                cd -
+                rm -rf /tmp/dotfiles-vim.git
                 ;;
             neovim)
                 printf "${YELLOW}Installing neovim...\n${NC}"
