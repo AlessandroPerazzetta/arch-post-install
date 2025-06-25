@@ -152,8 +152,46 @@ then
 
     printf "${YELLOW}Install required packages...\n${NC}"
     sleep 1
-    sudo pacman -Sy --needed base-devel git openssh --noconfirm
-    sudo pacman -Sy curl jq wget --noconfirm
+
+    # Install base-devel if not already installed
+    if ! pacman -Qi base-devel &>/dev/null; then
+        printf "${YELLOW}Installing base-devel...\n${NC}"
+        sudo pacman -Sy --needed base-devel --noconfirm
+    else
+        printf "${LGREEN}base-devel is already installed.\n${NC}"
+    fi
+
+    # Install git if not already installed
+    if ! command -v git &>/dev/null; then
+        printf "${YELLOW}Installing git...\n${NC}"
+        sudo pacman -Sy git --noconfirm
+    else
+        printf "${LGREEN}git is already installed.\n${NC}"
+    fi
+
+    # Install curl if not already installed
+    if ! command -v curl &>/dev/null; then
+        printf "${YELLOW}Installing curl...\n${NC}"
+        sudo pacman -Sy curl --noconfirm
+    else
+        printf "${LGREEN}curl is already installed.\n${NC}"
+    fi
+
+    # Install jq if not already installed
+    if ! command -v jq &>/dev/null; then
+        printf "${YELLOW}Installing jq...\n${NC}"
+        sudo pacman -Sy jq --noconfirm
+    else
+        printf "${LGREEN}jq is already installed.\n${NC}"
+    fi
+
+    # Install wget if not already installed
+    if ! command -v wget &>/dev/null; then
+        printf "${YELLOW}Installing wget...\n${NC}"
+        sudo pacman -Sy wget --noconfirm
+    else
+        printf "${LGREEN}wget is already installed.\n${NC}"
+    fi
 
     if ! command -v sshd &> /dev/null; then
         printf "${YELLOW}openssh not found. Installing openssh...\n${NC}"
