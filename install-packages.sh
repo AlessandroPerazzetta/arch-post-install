@@ -375,6 +375,7 @@ then
                         ["youtube-nonstop"]="nlkaejimjacpillmajjnopmpbkbnocid"
                         ["user-agent-switcher-for-c"]="djflhoibgkdhkhhcedjiklpkjnoahfmg"
 			["modheader-modify-http-hea"]="idgpnmonknjnojddfkpgkljpfnnfcklj"
+   			["enhancer-for-youtube"]="ponfpcnoihfmfllpaingbgckeeldkhle"
                     )
                     for i in "${!EXTlist[@]}"; do
                         # echo "Key: $i value: ${EXTlist[$i]}"
