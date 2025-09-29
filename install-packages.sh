@@ -101,6 +101,7 @@ ALL_OPTIONS=(
     "brave|brave-browser|on"
     "brave_ext|brave-browser extensions|on"
     "remmina|remmina|on"
+    "tabby|tabby|on"
     "vscodium|vscodium|on"
     "vscode_nemo_actions|vscode_nemo_actions|on"
     "vscodium_ext|vscodium extensions|on"
@@ -399,6 +400,10 @@ then
             remmina)
                 printf "${YELLOW}Installing remmina...\n${NC}"
                 sudo pacman -Sy remmina --noconfirm
+                ;;
+            tabby)
+                printf "${YELLOW}Installing tabby...\n${NC}"
+                sudo pacman -Sy tabby-terminal --noconfirm
                 ;;
             vscodium)
                 printf "${YELLOW}Installing vscodium...\n${NC}"

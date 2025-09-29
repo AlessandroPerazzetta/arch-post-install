@@ -57,6 +57,7 @@ curl -s https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install
 - brave-browser extensions removed
   * ~~stream-cleaner~~
 - remmina
+- tabby
 - codium
 - codium marketplace replacement (local config)
 - codium marketplace replacement (env variables)
