@@ -57,7 +57,7 @@ command_exists() {
     command -v $1 >/dev/null 2>&1
 }
 
-commands_to_check_exist=("curl" "git")
+commands_to_check_exist=("curl" "git" "jq" "pigz" "pbzip2" "pxz" "zip" "unzip")
 for cmd in "${commands_to_check_exist[@]}"; do
     # if ! command_exists $cmd; then
     if ! command_exists $cmd; then
