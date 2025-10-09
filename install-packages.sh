@@ -358,6 +358,10 @@ then
                 printf "${YELLOW}Installing meld...\n${NC}"
                 sudo pacman -Sy meld --noconfirm
                 ;;
+            lazygit)
+                printf "${YELLOW}Installing lazygit...\n${NC}"
+                sudo pacman -Sy lazygit --noconfirm
+                ;;
             vlc)
                 printf "${YELLOW}Installing vlc...\n${NC}"
                 sudo pacman -Sy vlc --noconfirm

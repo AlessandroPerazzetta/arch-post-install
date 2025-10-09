@@ -36,6 +36,7 @@ curl -s https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install
 - neovim resources
 - filezilla
 - meld
+- lazygit
 - vlc
 - git
 - htop
