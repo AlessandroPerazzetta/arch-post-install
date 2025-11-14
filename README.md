@@ -89,6 +89,7 @@ curl -s https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install
   * {MARKET} ["Todo Tree: Show TODO, FIXME, etc. comment tags in a tree view"]="Gruntfuggly.todo-tree"
   * {MARKET} ["Shades of Purple: 🦄 A professional theme suite with hand-picked & bold shades of purple for your VS Code editor and terminal apps."]="ahmadawais.shades-of-purple"
   * {MARKET} ["Readable Indent"]="cnojima.readable-indent"
+  * {MARKET} ["VSCode Great Icons"]="emmanuelbeziat.vscode-great-icons"
   * {GITHUB} ["SSH Host Requirements"]="https://github.com/jeanp413/open-remote-ssh"
   * {GITHUB} ["C/C++: C/C++ IntelliSense, debugging, and code browsing."]="ms-vscode.cpptools"
   * {GITHUB} ["GitHub Copilot - 1.257.1316"]="GitHub.copilot"
