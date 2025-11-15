@@ -147,6 +147,7 @@ curl -s https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install
   * REM>["GitLens — Git supercharged: Supercharge Git within VS Code"]="eamodio.gitlens"
   * REM> (Integrated)["GitHub Copilot - 1.257.1316"]="GitHub.copilot"
   * REM> (Integrated)["GitHub Copilot Chat - 0.23.2024120501"]="GitHub.copilot-chat"
+- zed editor (source install)
 - marktext
 - dbeaver-ce_latest_amd64
 - smartgit-latest
