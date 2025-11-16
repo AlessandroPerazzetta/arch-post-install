@@ -126,6 +126,7 @@ ALL_OPTIONS=(
     "ssh_skip_hosts_check|ssh-skip-hosts-check-settings|on"
     "borgbackup_vorta|borgbackup + vorta gui|on"
     "spotube|spotube (AUR install)|off"
+    "fonts|fonts (AUR install)|on"
 )
 
 # Parse arguments
@@ -650,7 +651,7 @@ then
                 # Check if $installation_path/zed-${channel} exists, if not try to create it, if fails try to create with sudo and grant permissions for the user
                 if [ ! -d "$installation_path/zed-${channel}" ]; then
                     printf "${LCYAN}$installation_path/zed-${channel} does not exist. Creating it.\n${NC}"
-                    mkdir -p "$installation_path/zed-${channel}" || {
+                    sudo mkdir -p "$installation_path/zed-${channel}" || {
                         printf "${LRED} Failed to create $installation_path/zed-${channel}. Trying with sudo."
                         sudo mkdir -p "$installation_path/zed-${channel}" || {
                             printf "${RED} °°° Failed to create $installation_path/zed-${channel} even with sudo. Exiting.\n${NC}"
@@ -686,6 +687,7 @@ then
                     else
                         data_home="$HOME/.local/share"
                     fi
+                    mkdir -p "$data_home/applications/"
                     cp "$installation_path/zed-${channel}/share/applications/zed.desktop" "$data_home/applications/dev.zed.Zed.desktop"
                     sed -i "s|Icon=zed|Icon=$installation_path/zed-${channel}/share/icons/hicolor/512x512/apps/zed.png|g" "$data_home/applications/dev.zed.Zed.desktop"
                     sed -i "s|Exec=zed|Exec=$installation_path/zed-${channel}/libexec/zed-editor|g" "$data_home/applications/dev.zed.Zed.desktop"
@@ -797,6 +799,10 @@ then
                 printf "${YELLOW}Installing spotube...\n${NC}"
                 yay -S spotube-bin --noconfirm
                 ;;
+            fonts)
+                printf "${YELLOW}Installing fonts...\n${NC}"
+                yay -S ttf-nerd-fonts-symbols ttf-jetbrains-mono-nerd --noconfirm
+                ;;    
         esac
     done
 else
