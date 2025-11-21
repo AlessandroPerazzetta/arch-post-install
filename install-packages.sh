@@ -108,6 +108,7 @@ ALL_OPTIONS=(
     "vscode|vscode|on"
     "vscode_ext|vscode extensions|on"
     "zed_editor|zed_editor (sources install)|on"
+    "grpcurl|grpcurl (AUR install)|on"
     "marktext|marktext|on"
     "dbeaver|dbeaver|on"
     "smartgit|smartgit|off"
@@ -695,6 +696,10 @@ then
                     sed -i "s|Icon=zed|Icon=$installation_path/zed-${channel}/share/icons/hicolor/512x512/apps/zed.png|g" "$data_home/applications/dev.zed.Zed.desktop"
                     sed -i "s|Exec=zed|Exec=$installation_path/zed-${channel}/libexec/zed-editor|g" "$data_home/applications/dev.zed.Zed.desktop"
                 fi
+                ;;
+            grpcurl)
+                printf "${YELLOW}Installing grpcurl...\n${NC}"
+                yay -Sy grpcurl-bin --noconfirm
                 ;;
             marktext)
                 printf "${YELLOW}Installing Marktext editor...\n${NC}"
