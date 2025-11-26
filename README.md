@@ -152,6 +152,7 @@ curl -s https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install
   * REM> (Integrated)["GitHub Copilot Chat - 0.23.2024120501"]="GitHub.copilot-chat"
 - zed editor (source install)
 - grpcurl
+- unison + unison-gtk
 - marktext
 - dbeaver-ce_latest_amd64
 - smartgit-latest

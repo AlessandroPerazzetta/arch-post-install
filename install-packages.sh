@@ -109,6 +109,7 @@ ALL_OPTIONS=(
     "vscode_ext|vscode extensions|on"
     "zed_editor|zed_editor (sources install)|on"
     "grpcurl|grpcurl (AUR install)|on"
+    "unison|unison + unison-gtk (AUR install)|on"
     "marktext|marktext|on"
     "dbeaver|dbeaver|on"
     "smartgit|smartgit|off"
@@ -700,6 +701,10 @@ then
             grpcurl)
                 printf "${YELLOW}Installing grpcurl...\n${NC}"
                 yay -Sy grpcurl-bin --noconfirm
+                ;;
+            unison)
+                printf "${YELLOW}Installing unison and unison-gtk...\n${NC}"
+                yay -Sy unison unison-gtk --noconfirm
                 ;;
             marktext)
                 printf "${YELLOW}Installing Marktext editor...\n${NC}"
