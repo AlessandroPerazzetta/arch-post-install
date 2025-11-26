@@ -57,7 +57,14 @@ command_exists() {
     command -v $1 >/dev/null 2>&1
 }
 
-commands_to_check_exist=("curl" "git" "jq" "pigz" "pbzip2" "pxz" "zip" "unzip")
+printf "${YELLOW}Updating system...\n${NC}"
+sleep 1
+sudo pacman -Syyu --noconfirm
+
+printf "${YELLOW}Install required packages...\n${NC}"
+sleep 1
+
+commands_to_check_exist=("curl" "wget" "git" "jq" "pigz" "pbzip2" "pxz" "zip" "unzip" "openssh")
 for cmd in "${commands_to_check_exist[@]}"; do
     # if ! command_exists $cmd; then
     if ! command_exists $cmd; then
@@ -68,6 +75,45 @@ for cmd in "${commands_to_check_exist[@]}"; do
         printf "${LGREEN}Command ${cmd} is already installed.\n${NC}"
     fi
 done
+
+# Install base-devel if not already installed
+if ! pacman -Qi base-devel &>/dev/null; then
+    printf "${YELLOW}Installing base-devel...\n${NC}"
+    sudo pacman -Sy --needed base-devel --noconfirm
+else
+    printf "${LGREEN}base-devel is already installed.\n${NC}"
+fi
+
+if command -v sshd &> /dev/null; then
+    printf "${YELLOW}Openssh found. Checking systemd service...\n${NC}"
+    if ! systemctl is-enabled --quiet sshd; then
+        printf "${YELLOW}Enabling and starting sshd service...\n${NC}"
+        sudo systemctl enable sshd
+        sudo systemctl start sshd
+    else
+        printf "${LGREEN}sshd service is already enabled.\n${NC}"
+    fi
+fi
+
+if ! command -v yay &> /dev/null
+then
+    # printf "${YELLOW}Install AUR packages...\n${NC}"
+    # sleep 1
+    # git clone https://aur.archlinux.org/yay-bin.git
+    # cd yay-bin
+    # makepkg -si
+    # yay -Syu
+
+    printf "${YELLOW}Install yay git package from AUR...\n${NC}"
+    cd /tmp/
+    if [ -d yay ]; then
+        printf "${YELLOW}yay directory already exists, delete before git clone...\n${NC}"
+        rm -rf yay
+    fi
+    git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm && yay -Syu
+    cd -
+fi
+
 sleep 1
 
 read dialog <<< "$(which whiptail dialog 2> /dev/null)"
@@ -154,83 +200,7 @@ clear
 
 if [ ${#choices} -gt 0 ]
 then
-    printf "${YELLOW}Updating system...\n${NC}"
-    sleep 1
-    sudo pacman -Syyu --noconfirm
 
-    printf "${YELLOW}Install required packages...\n${NC}"
-    sleep 1
-
-    # Install base-devel if not already installed
-    if ! pacman -Qi base-devel &>/dev/null; then
-        printf "${YELLOW}Installing base-devel...\n${NC}"
-        sudo pacman -Sy --needed base-devel --noconfirm
-    else
-        printf "${LGREEN}base-devel is already installed.\n${NC}"
-    fi
-
-    # Install git if not already installed
-    if ! command -v git &>/dev/null; then
-        printf "${YELLOW}Installing git...\n${NC}"
-        sudo pacman -Sy git --noconfirm
-    else
-        printf "${LGREEN}git is already installed.\n${NC}"
-    fi
-
-    # Install curl if not already installed
-    if ! command -v curl &>/dev/null; then
-        printf "${YELLOW}Installing curl...\n${NC}"
-        sudo pacman -Sy curl --noconfirm
-    else
-        printf "${LGREEN}curl is already installed.\n${NC}"
-    fi
-
-    # Install jq if not already installed
-    if ! command -v jq &>/dev/null; then
-        printf "${YELLOW}Installing jq...\n${NC}"
-        sudo pacman -Sy jq --noconfirm
-    else
-        printf "${LGREEN}jq is already installed.\n${NC}"
-    fi
-
-    # Install wget if not already installed
-    if ! command -v wget &>/dev/null; then
-        printf "${YELLOW}Installing wget...\n${NC}"
-        sudo pacman -Sy wget --noconfirm
-    else
-        printf "${LGREEN}wget is already installed.\n${NC}"
-    fi
-
-    if ! command -v sshd &> /dev/null; then
-        printf "${YELLOW}openssh not found. Installing openssh...\n${NC}"
-        sudo pacman -Sy openssh --noconfirm
-    fi
-    if ! systemctl is-enabled --quiet sshd; then
-        printf "${YELLOW}Enabling and starting sshd service...\n${NC}"
-        sudo systemctl enable sshd
-        sudo systemctl start sshd
-    else
-        printf "${LGREEN}sshd service is already enabled.\n${NC}"
-    fi
-
-    if ! command -v yay &> /dev/null
-    then
-        # printf "${YELLOW}Install AUR packages...\n${NC}"
-        # sleep 1
-        # git clone https://aur.archlinux.org/yay-bin.git
-        # cd yay-bin
-        # makepkg -si
-        # yay -Syu
-
-        printf "${YELLOW}Install yay git package from AUR...\n${NC}"
-        cd /tmp/
-        if [ -d yay ]; then
-            printf "${YELLOW}yay directory already exists, delete before git clone...\n${NC}"
-            rm -rf yay
-        fi
-        git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm && yay -Syu
-        cd -
-    fi
 
 
     for choice in $choices
