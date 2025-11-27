@@ -135,6 +135,7 @@ ALL_OPTIONS=(
     "kitty|kitty|on"
     "kitty_res|kitty resources|on"
     "kitty_libgl_fix|kitty libgl fix|off"
+    "alacritty|alacritty|off"
     "screen|screen|on"
     "tmux|tmux|on"
     "tmux_res|tmux resources|on"
@@ -274,6 +275,10 @@ then
                 echo -e '#!/usr/bin/env bash\nLIBGL_ALWAYS_SOFTWARE=1 kitty'       | sudo tee "$TARGET_FILE" > /dev/null
                 # Make the file executable
                 sudo chmod +x "$TARGET_FILE"
+                ;;
+            alacritty)
+                printf "${YELLOW}Installing alacritty terminal...\n${NC}"
+                sudo pacman -Sy alacritty --noconfirm
                 ;;
             screen)
                 printf "${YELLOW}Installing screen...\n${NC}"

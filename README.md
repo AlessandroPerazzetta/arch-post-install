@@ -30,6 +30,7 @@ curl -s https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install
 - tmux resources
 - kitty
 - kitty resources
+- alacritty
 - vim
 - vim resources
 - neovim
