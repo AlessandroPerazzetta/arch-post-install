@@ -64,7 +64,7 @@ sudo pacman -Syyu --noconfirm
 printf "${YELLOW}Install required packages...\n${NC}"
 sleep 1
 
-commands_to_check_exist=("curl" "wget" "git" "jq" "pigz" "pbzip2" "pxz" "zip" "unzip" "openssh")
+commands_to_check_exist=("curl" "wget" "git" "jq" "pigz" "pbzip2" "pxz" "zip" "unzip" "openssh" "ripgrep" "bat" "net-tools" "inetutils")
 for cmd in "${commands_to_check_exist[@]}"; do
     # if ! command_exists $cmd; then
     if ! command_exists $cmd; then
