@@ -132,10 +132,11 @@ ALL_OPTIONS=(
     "xed_res|xed theme resources|on"
     "gedit_res|gedit theme resources|off"
     "sys_utils|system utils|on"
-    "kitty|kitty|on"
-    "kitty_res|kitty resources|on"
+    "kitty|kitty|off"
+    "kitty_res|kitty resources|off"
     "kitty_libgl_fix|kitty libgl fix|off"
-    "alacritty|alacritty|off"
+    "alacritty|alacritty|on"
+    "alacritty_res|alacritty resources|on"
     "screen|screen|on"
     "tmux|tmux|on"
     "tmux_res|tmux resources|on"
@@ -279,6 +280,19 @@ then
             alacritty)
                 printf "${YELLOW}Installing alacritty terminal...\n${NC}"
                 sudo pacman -Sy alacritty --noconfirm
+                ;;
+            alacritty_res)
+                printf "${YELLOW}Installing alacritty resources...\n${NC}"
+                printf "${YELLOW}Installing alacritty resources from git sparse checkout...\n${NC}"
+                mkdir -p /tmp/dotfiles-alacritty.git
+                cd /tmp/dotfiles-alacritty.git
+                git init
+                git remote add origin -f https://github.com/AlessandroPerazzetta/dotfiles
+                git sparse-checkout set alacritty
+                git pull origin main
+                mv alacritty ~/.config/
+                cd -
+                rm -rf /tmp/dotfiles-alacritty.git
                 ;;
             screen)
                 printf "${YELLOW}Installing screen...\n${NC}"
