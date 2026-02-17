@@ -498,6 +498,7 @@ then
                         ["Readable Indent"]="cnojima.readable-indent"
                         ["VSCode Great Icons"]="emmanuelbeziat.vscode-great-icons"
                         ["Protobuf VSC"]="DrBlury.protobuf-vsc"
+                        ["JSON Beautify JSON"]="Meezilla.json"
                     )
                     for i in "${!VSCODEEXTlistAdd[@]}"; do
                         #echo "Key: $i value: ${VSCODEEXTlistAdd[$i]}"
@@ -583,6 +584,7 @@ then
                         ["Readable Indent"]="cnojima.readable-indent"
                         ["VSCode Great Icons"]="emmanuelbeziat.vscode-great-icons"
                         ["Protobuf VSC"]="DrBlury.protobuf-vsc"
+                        ["JSON Beautify JSON"]="Meezilla.json"
                         ["Remote - SSH"]="ms-vscode-remote.remote-ssh"
                     )
                     for i in "${!VSCODEEXTlistAdd[@]}"; do
