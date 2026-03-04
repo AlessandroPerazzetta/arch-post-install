@@ -176,6 +176,9 @@ curl -s https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install
 - SSH skip check hosts
 - borgbackup + vorta gui
 - spotube
+- fonts
+- yt-dlp
+- cliamp
 
 # ~~List installed scripts:~~
 

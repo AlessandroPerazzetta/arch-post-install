@@ -177,6 +177,8 @@ ALL_OPTIONS=(
     "borgbackup_vorta|borgbackup + vorta gui|on"
     "spotube|spotube (AUR install)|off"
     "fonts|fonts (AUR install)|on"
+    "yt-dlp|yt-dlp (AUR install)|on"
+    "cliamp|cliamp (AUR install)|off"
 )
 
 # Parse arguments
@@ -804,7 +806,15 @@ then
             fonts)
                 printf "${YELLOW}Installing fonts...\n${NC}"
                 yay -S ttf-nerd-fonts-symbols ttf-jetbrains-mono-nerd --noconfirm
-                ;;    
+                ;;
+            yt-dlp)
+                printf "${YELLOW}Installing yt-dlp...\n${NC}"
+                yay -S yt-dlp --noconfirm
+                ;;
+            cliamp)
+                printf "${YELLOW}Installing cliamp...\n${NC}"
+                yay -S cliamp --noconfirm
+                ;;
         esac
     done
 else
