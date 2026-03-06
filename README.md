@@ -56,6 +56,7 @@ curl -s https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install
   * user-agent-switcher-for-c
   * modheader-modify-http-hea
   * enhancer-for-youtube
+  * disable-twitch-extensions
 - brave-browser extensions removed
   * ~~stream-cleaner~~
 - remmina
