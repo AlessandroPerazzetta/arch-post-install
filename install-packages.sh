@@ -57,6 +57,42 @@ command_exists() {
     command -v $1 >/dev/null 2>&1
 }
 
+# Function to install Brave browser extensions into a given Brave installation path.
+# Usage: install_brave_extensions <brave_install_path>
+install_brave_extensions() {
+    local BRAVE_PATH="$1"
+    local BRAVE_EXTENSIONS_PATH="$BRAVE_PATH/extensions"
+    if [ -d "$BRAVE_PATH" ]; then
+        sudo mkdir -p "${BRAVE_EXTENSIONS_PATH}"
+        declare -A EXTlist=(
+            ["ublock-origin"]="cjpalhdlnbpafiamejdnhcphjbkeiagm"
+            ["bypass-adblock-detection"]="lppagnomjcaohgkfljlebenbmbdmbkdj"
+            ["hls-downloader"]="hkbifmjmkohpemgdkknlbgmnpocooogp"
+            ["i-dont-care-about-cookies"]="fihnjjcciajhdojfnbdddfaoknhalnja"
+            ["keepassxc-browser"]="oboonakemofpalcgghocfoadofidjkkk"
+            ["session-buddy"]="edacconmaakjimmfgnblocblbcdcpbko"
+            ["the-marvellous-suspender"]="noogafoofpebimajpfpamcfhoaifemoa"
+            ["url-tracking-stripper-red"]="flnagcobkfofedknnnmofijmmkbgfamf"
+            ["video-downloader-plus"]="njgehaondchbmjmajphnhlojfnbfokng"
+            ["youtube-nonstop"]="nlkaejimjacpillmajjnopmpbkbnocid"
+            ["user-agent-switcher-for-c"]="djflhoibgkdhkhhcedjiklpkjnoahfmg"
+            ["modheader-modify-http-hea"]="idgpnmonknjnojddfkpgkljpfnnfcklj"
+            ["enhancer-for-youtube"]="ponfpcnoihfmfllpaingbgckeeldkhle"
+            ["disable-twitch-extensions"]="nmogopjdbhhnbkiklkdahphkdpbjfine"
+        )
+        for i in "${!EXTlist[@]}"; do
+            sudo bash -c "echo -e '{ \"external_update_url\": \"https://clients2.google.com/service/update2/crx\" }' > ${BRAVE_EXTENSIONS_PATH}/${EXTlist[$i]}.json"
+        done
+    else
+        printf "${LCYAN}--------------------------------------------------------------------------------\n${LRED}"
+        printf "ERROR Brave path not found, extensions not installed !!!\n"
+        printf "${LCYAN}--------------------------------------------------------------------------------\n${GREEN}"
+        read -n 1 -s -r -p "Press any key to continue"
+        sleep 3
+        printf "\n${NC}"
+    fi
+}
+
 printf "${YELLOW}Updating system...\n${NC}"
 sleep 1
 sudo pacman -Syyu --noconfirm
@@ -148,6 +184,8 @@ ALL_OPTIONS=(
     "vlc|vlc|on"
     "brave|brave-browser|on"
     "brave_ext|brave-browser extensions|on"
+    "brave-origin|brave-origin-browser|off"
+    "brave-origin_ext|brave-origin-browser extensions|off"
     "remmina|remmina|on"
     "tabby|tabby|on"
     "tabby_libgl_fix|tabby libgl fix|off"
@@ -374,39 +412,15 @@ then
                 ;;
             brave_ext)
                 printf "${YELLOW}Installing brave-browser extensions...\n${NC}"
-                BRAVE_PATH="/opt/brave-bin"
-                BRAVE_EXTENSIONS_PATH="$BRAVE_PATH/extensions"
-                if [ -d "$BRAVE_PATH" ]
-                then
-                    sudo mkdir -p ${BRAVE_EXTENSIONS_PATH}
-                    declare -A EXTlist=(
-                        ["ublock-origin"]="cjpalhdlnbpafiamejdnhcphjbkeiagm"
-                        ["bypass-adblock-detection"]="lppagnomjcaohgkfljlebenbmbdmbkdj"
-                        ["hls-downloader"]="hkbifmjmkohpemgdkknlbgmnpocooogp"
-                        ["i-dont-care-about-cookies"]="fihnjjcciajhdojfnbdddfaoknhalnja"
-                        ["keepassxc-browser"]="oboonakemofpalcgghocfoadofidjkkk"
-                        ["session-buddy"]="edacconmaakjimmfgnblocblbcdcpbko"
-                        ["the-marvellous-suspender"]="noogafoofpebimajpfpamcfhoaifemoa"
-                        ["url-tracking-stripper-red"]="flnagcobkfofedknnnmofijmmkbgfamf"
-                        ["video-downloader-plus"]="njgehaondchbmjmajphnhlojfnbfokng"
-                        ["youtube-nonstop"]="nlkaejimjacpillmajjnopmpbkbnocid"
-                        ["user-agent-switcher-for-c"]="djflhoibgkdhkhhcedjiklpkjnoahfmg"
-                        ["modheader-modify-http-hea"]="idgpnmonknjnojddfkpgkljpfnnfcklj"
-                        ["enhancer-for-youtube"]="ponfpcnoihfmfllpaingbgckeeldkhle"
-                        ["disable-twitch-extensions"]="nmogopjdbhhnbkiklkdahphkdpbjfine"
-                    )
-                    for i in "${!EXTlist[@]}"; do
-                        # echo "Key: $i value: ${EXTlist[$i]}"
-                        # echo '{"external_update_url": "https://clients2.google.com/service/update2/crx"}' > /opt/google/chrome/extensions/${EXTlist[$i]}.json
-                        sudo bash -c "echo -e '{ \"external_update_url\": \"https://clients2.google.com/service/update2/crx\" }' > ${BRAVE_EXTENSIONS_PATH}/${EXTlist[$i]}.json"
-                    done
-                else
-                    printf "${LCYAN}--------------------------------------------------------------------------------\n${LRED}"
-                    printf "ERROR Brave path not found, extensions not installed !!!\n"
-                    printf "${LCYAN}--------------------------------------------------------------------------------\n${GREEN}"
-                    read -n 1 -s -r -p "Press any key to continue"
-                    printf "\n${NC}"
-                fi
+                install_brave_extensions "/opt/brave-bin"
+                ;;
+            brave-origin)
+                printf "${YELLOW}Installing brave-origin-browser...\n${NC}"
+                yay -Sy brave-origin-nightly-bin --noconfirm
+                ;;
+            brave-origin_ext)
+                printf "${YELLOW}Installing brave-origin-browser extensions...\n${NC}"
+                install_brave_extensions "/opt/brave.com/brave-origin-nightly"
                 ;;
             remmina)
                 printf "${YELLOW}Installing remmina...\n${NC}"
