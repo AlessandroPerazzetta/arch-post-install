@@ -161,6 +161,7 @@ curl -s https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install
 - grpcurl
 - unison + unison-gtk
 - marktext
+- ferrite
 - mqtt-explorer (AUR install)
 - bruno (AUR install)
 - dbeaver-ce_latest_amd64

@@ -196,7 +196,8 @@ ALL_OPTIONS=(
     "zed_editor|zed_editor (sources install)|on"
     "grpcurl|grpcurl (AUR install)|on"
     "unison|unison + unison-gtk (AUR install)|on"
-    "marktext|marktext|on"
+    "marktext|marktext|off"
+    "ferrite|ferrite editor|on"
     "dbeaver|dbeaver|on"
     "mqtt_explorer|MQTT Explorer (AUR install)|on"
     "bruno|Bruno The Git-native API client (AUR install)|on"
@@ -725,6 +726,10 @@ then
                 sed -i -e "s/Exec=marktext/Exec=\/opt\/marktext\/marktext/g" ~/.local/share/applications/marktext.desktop
                 sed -i -e "s/Icon=marktext/Icon=\/opt\/marktext\/marktext/g" ~/.local/share/applications/marktext.desktop
                 update-desktop-database ~/.local/share/applications/
+                ;;
+            ferrite)
+                printf "${YELLOW}Installing Ferrite editor...\n${NC}"
+                yay -S ferrite-bin --noconfirm
                 ;;
             dbeaver)
                 printf "${YELLOW}Installing dbeaver...\n${NC}"
