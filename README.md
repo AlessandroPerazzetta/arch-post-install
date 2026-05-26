@@ -14,8 +14,6 @@ curl -s https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install
 curl -s https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install/main/install-packages.sh | bash -s -- --none
 ```
 
-See [ref/instructions.md](ref/instructions.md) for branch-targeted testing with the `ARCH_BRANCH` env var.
-
 ## Project Structure
 
 ```
