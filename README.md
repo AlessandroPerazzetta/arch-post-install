@@ -117,6 +117,7 @@ Dropping a new `.sh` file into `modules/` is all that is needed to add it to the
 | SSH alive settings | on |
 | SSH skip hosts check | on |
 | VirtualBox | on |
+| QEMU + Virt-Manager | off |
 | borgbackup + Vorta GUI | on |
 | KeePassXC | on |
 | fonts (AUR) | on |
