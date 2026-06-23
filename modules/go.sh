@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Module: go
 # DESC: go
-# DEFAULT: on
-# ORDER: 480
+# DEFAULT: off
+# ORDER: 481
 # Called by install-packages.sh orchestrator
 
 install_go() {
