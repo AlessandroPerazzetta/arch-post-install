@@ -130,6 +130,7 @@ Dropping a new `.sh` file into `modules/` is all that is needed to add it to the
 | yt-dlp (AUR) | on |
 | spotube (AUR) | off |
 | cliamp (AUR) | off |
+| fzf | on |
 
 #### Messaging & media
 
