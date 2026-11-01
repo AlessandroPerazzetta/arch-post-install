@@ -20,8 +20,7 @@ install_brave_extensions() {
             ["hls-downloader"]="hkbifmjmkohpemgdkknlbgmnpocooogp"
             ["i-dont-care-about-cookies"]="fihnjjcciajhdojfnbdddfaoknhalnja"
             ["keepassxc-browser"]="oboonakemofpalcgghocfoadofidjkkk"
-            ["session-buddy"]="edacconmaakjimmfgnblocblbcdcpbko"
-            ["the-marvellous-suspender"]="noogafoofpebimajpfpamcfhoaifemoa"
+            ["tab-manager-session-manag"]="maomempcdmkfcjgeabecfpkebghcigac"]
             ["url-tracking-stripper-red"]="flnagcobkfofedknnnmofijmmkbgfamf"
             ["video-downloader-plus"]="njgehaondchbmjmajphnhlojfnbfokng"
             ["youtube-nonstop"]="nlkaejimjacpillmajjnopmpbkbnocid"
@@ -33,6 +32,9 @@ install_brave_extensions() {
             ["fetchv-video-downloader-f"]="nfmmmhanepmpifddlkkmihkalkoekpfd"
             ["the-stream-detector"]="iakkmkmhhckcmoiibcfjnooibphlobak"
         )
+        # Removed extensions due to being abandoned or not working properly
+        # ["session-buddy"]="edacconmaakjimmfgnblocblbcdcpbko"
+        # ["the-marvellous-suspender"]="noogafoofpebimajpfpamcfhoaifemoa"
         for i in "${!EXTlist[@]}"; do
             sudo bash -c "echo -e '{ \"external_update_url\": \"https://clients2.google.com/service/update2/crx\" }' > ${BRAVE_EXTENSIONS_PATH}/${EXTlist[$i]}.json"
         done
