@@ -37,13 +37,25 @@ if [ "$EUID" -eq 0 ]; then
     exit 1
 fi
 
+# Parse arguments
+ALL_OFF=false
+DO_UPGRADE=false
+for arg in "$@"; do
+    [[ "$arg" == "--none" ]] && ALL_OFF=true
+    [[ "$arg" == "--upgrade" ]] && DO_UPGRADE=true
+done
+
 printf "${YELLOW}Updating system...\n${NC}"
 sleep 1
 sudo pacman -Sy
 
-printf "${YELLOW}Install required packages...\n${NC}"
-sleep 1
-sudo pacman -Syyu --noconfirm
+if $DO_UPGRADE; then
+    printf "${YELLOW}Upgrading all packages...\n${NC}"
+    sleep 1
+    sudo pacman -Syyu --noconfirm
+else
+    printf "${YELLOW}Skipping full system upgrade. Pass --upgrade to run 'sudo pacman -Syyu --noconfirm'.\n${NC}"
+fi
 
 printf "${YELLOW}Install required packages...\n${NC}"
 sleep 1
@@ -160,12 +172,6 @@ done
 while IFS= read -r _line; do
     ALL_OPTIONS+=("${_line#*|}")
 done < <(printf '%s\n' "${_opts_unsorted[@]}" | sort -t'|' -k1,1n)
-
-# Parse arguments
-ALL_OFF=false
-for arg in "$@"; do
-    [[ "$arg" == "--none" ]] && ALL_OFF=true
-done
 
 # Build options array for dialog/whiptail
 options=()

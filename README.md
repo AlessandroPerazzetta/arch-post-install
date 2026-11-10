@@ -12,7 +12,14 @@ curl -s https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install
 
 # Run with all options pre-deselected
 curl -s https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install/main/install-packages.sh | bash -s -- --none
+
+# Include the full system upgrade (pacman -Syyu)
+curl -s https://raw.githubusercontent.com/AlessandroPerazzetta/arch-post-install/main/install-packages.sh | bash -s -- --upgrade
 ```
+
+Available flags:
+- `--none` — pre-deselect all checklist options
+- `--upgrade` — run `sudo pacman -Syyu --noconfirm` (full system upgrade); skipped by default
 
 ## Project Structure
 
